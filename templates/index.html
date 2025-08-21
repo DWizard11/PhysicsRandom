@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Student Offences</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+
+    <body>
+        <h1>Very naughty naughty people</h1>
+        <table>
+            <tr>
+                <th>Student Name</th>
+                <th>Offence</th>
+                <th>Description</th>
+                <th>Severity</th>
+            </tr>
+                
+            <tr class="severity-high">
+                <td>Daniyal</td>
+                <td>2024-08-06</td>
+                <td>Take H1 econs</td>
+                <td>High</td>
+            </tr>
+        </table>
+        <hr>
+        <h2>Add The Naughty People</h2>
+        <form action="/add" method="POST">
+            <label for="name">Name: </label>
+            <input type="text" name="name"><br><br>
+            <label for="offence">Date: </label>
+            <input type="text" name="date"><br><br>
+            <label for="description">Description: </label>
+            <input type="text" name="description"><br><br>
+            <label for="severity">Severity: </label>
+            <input type="text" name="severity"><br><br>
+
+            <input type="submit" value="Submit Offence">
+        </form>
+    </body>
+</html>
