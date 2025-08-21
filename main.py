@@ -115,9 +115,10 @@ def definition():
     return render_template("definition.html")
 
 
+
     
 if __name__ == "__main__": 
-    app.run()
+    app.run(debug=True)
 
 
 
