@@ -1,13 +1,36 @@
 <!DOCTYPE html> 
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <title>Physics Test</title>
-        <link rel="stylesheet" href="/static/style.css">
-    </head>
+        <head>
+            <meta charset='utf-8'>
+            <title>Physics Test</title>
+            <link rel="stylesheet" href="/static/style.css">
+        </head>
 
-    <body>
-        <h1>Physics Definitions</h1>
-        <hr> 
-    </body>
+        <body class="bg-snoopy-sky">
+            <header class="bg-doghouse-header" style="padding:2rem;">
+                <h1 style="color:var(--snoopy-white); margin:0;">Physics Quiz</h1>
+            </header>
+        
+            <!-- Zigzag divider -->
+            <div class="zigzag-divider"></div>
+            <div class='photo'>
+                <img src="{{ url_for('static', filename='snoopy.jpg') }}" 
+                     alt="snoopy" 
+                     class="rounded-photo">
+
+            </div>
+                
+        
+            <main style="padding:2rem;">
+                <div class="card">
+                    <p>what is physics</p>
+                    <button class="btn">submit</button>
+                </div>
+
+                
+            </main>
+        </body>
+
+
 </html>
+

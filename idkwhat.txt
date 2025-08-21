@@ -1,0 +1,148 @@
+systematic error will result in all readings having a constant error in one direction.
+random error will result in a scatter of readings about a mean value.
+Accuracy is the degree to which a measurement approaches the true value.
+Precision is the degree of agreement of repeated measurements of the same quantity.
+Scalar is a quantity that has magnitude only, not direction.
+Vector is a quantity having both magnitude and direction.
+Displacement is the distance of an object or a point, in a specified direction, from some reference point.
+Speed is distance travelled divided by the time taken.
+Average speed is the total distance travelled divided by the total time taken.
+Velocity is the rate of change of displacement.
+Average velocity is the total change of displacement divided by the total time taken
+Acceleration is the rate of change of velocity.
+Acceleration of free fall is the acceleration of a body towards the surface of Earth when the only force acting on it is its weight.
+Newton’s First law states that a body stays at rest or continues to move at constant velocity unless a resultant force acts on it.
+Newton’s Second law states that the rate of change of momentum of a body is proportional to the resultant force acting on the body and takes place in the direction of the resultant force.
+Newton’s Third law states that if body A exerts a force on body B, then body B will exert a force of the same type that is equal in magnitude and opposite in direction on body A.
+Mass is the property of a body which resists change in motion (inertia).
+Weight is the force experienced by a mass in a gravitational field.
+Linear momentum is the product of the mass of a body and its velocity.
+Impulse is the product of a force acting on a body and the time of impact.
+Resultant Force is proportional to the rate of change of momentum of a body and the change in momentum takes place in the direction of the force.
+The Principle of Conservation of Linear Momentum states that the total momentum of a system remains constant provided no resultant external force act on the system.
+elastic collision is one in which the total kinetic energy remains the same. 
+inelastic collision is one in which the total kinetic energy is not conserved.
+Hooke’s Law states that, provided the proportionality limit is not exceeded, the extension of a body is proportional to the applied load.
+Upthrust is equal in magnitude and opposite in direction to the weight of fluid displaced by a submerged or floating object.
+For an object floating in equilibrium, the upthrust is equal in magnitude and opposite in direction to the weight of the object.
+The centre of gravity of an object is the point at which the whole weight of the object may be considered to act.
+Principle of Moments states that for a system in equilibrium, there is no resultant moment about any point.
+Conditions for a system to be in equilibrium is No resultant force and No resultant torque about any point.
+Moment of a force is the turning effect of the force. It is equal to the product of the force and the perpendicular distance of the line of action of the force from the pivot.
+couple consists of two equal and opposite parallel forces whose lines of action do not coincide. It tends to produce rotation only.
+The torque of a couple is the turning effect of the couple. It is equal to the product of one of the forces and the perpendicular distance between the forces.
+Work done by a force is the product of the force and the displacement in the direction of the force.
+Gravitational Potential energy is the stored ability of an object to do work as a result of its mass and position.
+Electric Potential energy is the stored ability of object to do work as a result of its charge and position.
+Elastic Potential energy is the stored ability of object to do work as a result of its shape.
+The Principle of Conservation of Energy states that energy cannot be created or destroyed, but it can be converted from one form to another.
+Power is the work done per unit time.
+One radian is the angle subtended at the centre of a circle by an arc equal in length to the radius.
+Angular displacement is the angle through which an object turns, usually measured in radians (rad).
+Angular velocity is the rate of change of angular displacement.
+Field of force is a region of space surrounding a body within which it can exert a force on another similar body not in contact with it.
+Gravitational field is a region of space where a mass experiences a force. The direction of the field is the direction of the force on the mass.
+Gravitational field strength at a point is the gravitational force exerted per unit mass placed at that point.
+Newton’s Law of Gravitation states that the mutual force of attraction between any two point masses is proportional to the product of the masses and inversely proportional to the square of their separation.
+Weightlessness is the situation when a person experiences free fall and has zero contact force on him.
+The gravitational potential at a point is the work done per unit mass in bringing a small test mass from infinity to that point.
+Gravitational Potential is always negative because the gravitational potential is taken to be zero at infinit and gravitational forces are attractive, work done by the external agent on the point mass moving it from infinity is negative.
+Geostationary orbit refers to a circular orbit around the Earth in which a satellite would appear stationary to an observer on the Earth’s surface because it revolves around the Earth with the same period and in the same direction as the rotation of the Earth.
+geostationary satellite must be placed vertically above the equator because the force of attraction to the Earth is to its centre so the circular orbit must be centred on the Earth's centre. If the orbit is not on the equator the satellite would have varying latitude and so not be geostationary.
+geostationary satellite must move from west to east because the earth rotates from west to east.
+Thermal equilibrium is attained when two bodies in thermal contact have the same temperature and there is no net flow of heat between them.
+Absolute Scale of temperature (thermodynamic scale of temperature) is a scale that is independent of the property of any particular substance and has an absolute zero.
+ideal gas is one which obeys the equation of state pV = nRT at all pressures, volumes and temperatures.
+Avogadro constant is the number of atoms in 0.012 kg of carbon-12.
+One mole of any substance is the amount containing 6.02 × 1023 particles.
+The assumptions of the kinetic theory of gases include: [A gas consists of a large number of identical molecules, The gas molecules are in rapid, random motion.There are no inter-molecular forces between the molecules, except during a collision., The volume of the gas molecules is negligible compared with the volume of the container, Collisions between gas molecules and with the walls of the container are elastic., The time taken for a collision is negligible compared with the time interval between collisions.]
+Specific heat capacity is the thermal energy required per unit mass per unit change in temperature of the substance.
+Specific latent heat is the thermal energy per unit mass required to change the state of a substance without any change of temperature.
+Specific latent heat of fusion is the thermal energy per unit mass required to change a substance from solid to liquid without change of temperature.
+Specific latent heat of vaporization is the thermal energy per unit mass required to change a substancefrom liquid to vapour without change of temperature.
+The internal energy is the sum of a random distribution of kinetic and potential energies associated with themolecules of a system.
+First Law of thermodynamics states that the increase in internal energy of a system is equal to the sum of heat supplied to the system and the work done on the system.
+Displacement is the linear distance of the oscillating body from its equilibrium position in a specified direction.
+Amplitude is the maximum displacement of an oscillating body from its equilibrium position.
+Period is the time taken to complete one oscillation.
+Frequency is the number of oscillations per unit time.
+Angular frequency  is a constant of a given oscillator and is related to its natural frequency f by  = 2f.
+Simple harmonic motion is the motion of a body such that its acceleration is proportional to its displacement from the equilibrium position and is always directed towards that point.
+Damped oscillations are oscillations in which the amplitude diminishes with time as a result of resistive forces that reduce the total energy of the oscillations.
+Damping is the dissipation of total energy of an oscillating system with time due to resistive forces.
+Critical damping occurs when the displacement of the body is reduced to zero in the minimum time possible without any oscillations occurring.
+Forced oscillation is produced when a body is acted upon by an external periodic driving force, causing the body to oscillate at the driving frequency, rather than the natural frequency of the body.
+Resonance occurs when the driving frequency of a body is equal to its natural frequency, giving a maximum amplitude of oscillation.
+wave is a means by which energy may be transferred from one place to another as a result of oscillations.
+progressive wave is a wave in which energy is carried from one point to another by means of vibrations or oscillations within the wave.
+transverse wave is a wave in which the oscillations of the particles in the wave are at right angles to the direction of transfer of energy of the wave.
+longitudinal wave is a wave in which the oscillations of the particles in the wave are along the direction of transfer of energy of the wave.
+Phase difference is a measure of how much one wave is out of step with another. A phase difference of one cycle corresponds to 360 or 2 rad.
+Phase angle gives a measure of the fraction of a cycle that has been completed by an oscillating particle or by a wave.
+Wavelength is the shortest distance between two points on a progressive wave which are vibrating in phase.
+Wave speed is the distance travelled by the wave energy per unit time.
+Polarisation is where the oscillations in a wave are confined to one direction only in a plane normal to the direction of transfer of energy of the wave.
+The Principle of Superposition states that when two waves meet at a point, the resultant displacement is equal to the vector sum of the individual displacements.
+stationary wave is a wave in which vibrational energy is stored, rather than transmitted as in aprogressive wave. It is set up as a result of the superposition of two waves of the same amplitude and frequency travelling at the same speed in opposite directions.
+Diffraction is the spreading of waves when they pass through an opening or round an obstacle. Diffraction effects are the greatest when the width of the opening is comparable with the wavelength of the waves.
+Coherence is used to indicate two waves that have a constant phase difference.
+Interference is an effect that occurs when two or more waves overlap to produce a new wave pattern, i.e. a change in amplitude.
+Path difference is the difference in distance travelled by the two waves from their respective sources to a given point.
+The Rayleigh criterion states that the images of two point objects is considered just resolved when the central maximum of one diffraction pattern coincides with the first minimum of the other.
+Node is a point on a stationary wave where the amplitude of the vibration is zero or minimum.
+Antinode is a point on a stationary wave where the amplitude of the vibration is maximum.
+Electric field strength at a point is defined as the electric force exerted per unit positive charge acting on a small stationary charge placed at that point. It is numerically equal to the potential gradient at that point. 
+Electric field is a region of space where a stationary charge experiences a force.
+The direction of the electric field is the direction of the force on a positive charge.
+Electric field lines are lines that show the direction of the force acting on a stationary positive point charge in the field.
+The electric potential at a point is the work done per unit positive charge in moving a small test charge from infinity to that point.
+The Coulomb’s Law states that the force between two point charges Q1 and Q2 is proportional to the product of the charges and inversely proportional to the square of their separation.
+Electric Current is the rate of flow of charge.
+The potential difference between two points in a circuit is the energy per unit charge transferred from electrical energy to other forms of energy when charge passes from one point to the other.
+The electromotive force is the energy transferred per unit charge from other forms of energy into electrical energy when charge is moved round a complete circuit.
+The resistance of a conductor is defined as the ratio of the potential difference across it to the current passing through it.
+The resistance of negative temperature coefficient (NTC) thermistors decrease as temperature increases.
+The magnetic flux density is defined as the force acting per unit current per unit length on a conductor placed perpendicular to the magnetic field.
+magnetic field is a region of space where a magnetic pole, a current-carrying conductor or a moving charged particle will experience a force.
+Magnetic flux is the product of an area and the component of the magnetic flux density perpendicular to that area.
+Magnetic Flux Linkage in a coil is the product of the area of the coil and the component of the magnetic flux density perpendicular to that area, and the number of turns in the coil.
+Faraday’s law states that the emf induced in a conductor is proportional to the rate of change of magnetic flux linkage.
+Lenz's law states that the direction of the induced emf is such that it tends to produce effects to oppose the change causing it.
+An Alternating Current is a current that varies periodically in direction.
+The root-mean-square current is defined as the steady direct current which produces heat at the same rate as the alternating current in a given resistor.
+The root-mean-square voltage is defined as the steady direct voltage which produces heat at the same rate as the alternating voltage across a given resistor.
+photon is a quantum of electromagnetic energy which is dependent only on the frequency of the radiation.
+Photoelectric effect is the ejection of an electron from a metal surface when the surface is irradiated with electromagnetic radiation of a high enough frequency.
+The threshold frequency is the lowest frequency of radiation that ejects electrons from a particular metal surface.
+The stopping potential Vs is the minimum potential difference to reduce the photoelectric current to zero. All the kinetic energy of the most energetic electron will be converted into electrical potential energy, eVs.
+Work function energy is the minimum energy required to eject an electron from the metal surface.
+Emission line spectra consist of quite separate bright lines of definite wavelengths on a dark background and are given by luminous gases and vapours at low pressure.
+Absorption line spectrum is a continuous spectrum crossed by dark lines due to some missing frequencies and is produced when white light passes through a cooler gas or vapour.
+Bremsstrahlung (braking radiation) describes the radiation which is emitted when fast-moving electrons are rapidly slowed down as they pass through the electric field around an atomic nucleus.
+Characteristic X-rays are emitted when an electron in an upper state (L- or M-shells) of an atom drops down to fill the vacated lower state (K-shell) that has its electron dislodged by the bombarding electrons.
+The pattern of the characteristic X-rays is unique to each element.
+The Heisenberg uncertainty principle states that if a measurement of the position of a particle is made with uncertainty Δx and a simultaneous measurement of its linear momentum is made with uncertainty Δpx, the product of the two uncertainties is restricted to Δpx Δx ≥ h. Another form of the uncertainty principle relates measurements of energy and time: ΔE Δt ≥ h
+Mass Number/Nucleon Number is the number of nucleons (protons and neutrons) found in the nucleus of an atom.
+Atomic Number/Proton Number is the number of protons in the nucleus of an atom.
+Isotopes are two or more atoms of the same element, having the same number of protons but different
+numbers of neutrons in their nuclei.
+Mass defect of an atom is the difference in mass between the mass of the constituent particles of an atom and the (smaller) mass of the whole atom.
+There is equivalence between mass and energy, given by E = mc2
+The nucleon number, charge, momentum and mass-energy are all conserved in nuclear processes.
+The conservation of mass-energy indicates that the total amount of energy, including energy that is
+equivalent to mass (E = mc2), remains constant.
+The Nuclear Binding Energy can be defined as the energy required to separate the nucleus into individual protons and neutrons. It is the energy equivalent of the mass defect of a nucleus. (Or The Nuclear Binding Energy can be defined as the energy released when a nucleus is formed from its constituent particles (protons and neutrons). It is the energy equivalent of the mass defect of a nucleus.)
+Nuclear Binding Energy per nucleon is the average energy released per nucleon when a nucleus is formed from its constituent particles (protons and neutrons). It is obtained by dividing the binding energy by the number of nucleons in the nucleus. (Or Nuclear Binding Energy per nucleon is the average energy required per nucleon to break down a nucleus into its constituent particles (protons and neutrons). It is obtained by dividing the binding energy by the number of nucleons in the nucleus.)
+Nuclear Fission is the splitting of a nucleus of high nucleon number into two smaller nuclei of approximately equal mass with the release of energy and neutrons.
+Nuclear Fusion is the formation of a larger nucleus from two nuclei of low nucleon number, with release of energy.
+Spontaneous decay means the decay occurs on its own and is unaffected by environmental or external factors such as temperature and pressure.
+Random decay means the nucleus has constant probability of decay per unit time. There is no way to predict when any individual nucleus will decay.
+Radioactive decay is the spontaneous and random decay of a nucleus with the emission of an alpha particle or a beta particle, and usually accompanied by the emission of a gamma ray photon to obtain a more stable nucleus.
+The half-life is the average time taken for the activity of a particular radioactive nuclide to fall to half its initial value
+The radioactive decay constant is the probability of decay per unit time of a nucleus.
+Activity is the number of nuclear disintegrations per unit time.
+Count rate is the number of emissions received by a detector per unit time from a radioactive source, which may include the background radiation.
+Background Count is the number of counts recorded by a radiation detector from background radiation in the absence of a radioactive source.
+Nucleon is the collective name for proton and neutron.
+Nuclide is a particular species (type) of nucleus that is specified by its proton number and neutron number.
+
