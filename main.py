@@ -1,37 +1,89 @@
-from flask import Flask, render_template, url_for, redirect, request
-from datetime import datetime
-import csv
+from flask import Flask, render_template
+import json 
+import random 
+### FUNCTION DEFINITIONS ###
+def parse_data(): 
+    with open("h2_physics_equations.json", "r", encoding='utf-8') as file: 
+        eqn = json.load(file) 
+        random.shuffle(eqn)
+        
+    with open("idkwhat.txt", "r", encoding='utf-8') as file: 
+        data = []
+        for line in file: 
+            try: 
+                data.append(line.rstrip())
+            except: 
+                continue
+    random.shuffle(data)
+    return data
 
+def normalise(s):
+    # crude normalisation: strip spaces, lowercase, collapse multiple equals signs formatting
+    s = s.strip().lower()
+    s = re.sub(r"\s+", "", s)
+    # convert some unicode symbols to ascii approximations
+    s = s.replace("Δ", "delta").replace("λ", "lambda")
+    return s
+
+def eqn(): 
+    for i, q in enumerate(eqn, 1):
+        print(f"\nQ{i}. Subject: {q['prompt']}")
+        print(f"   Topic: {q['topic']}")
+        user = input("   Type the equation (or press Enter to reveal): ")
+        if not user.strip():
+            print(f"   ▶ Answer: {q['equation']}")
+            continue
+        if normalise(user) == normalise(q["equation"]):
+            print("   ✓ Correct!")
+            score += 1
+        if user == "e": 
+            break 
+        else:
+            print("   ✗ Not quite.")
+            print(f"   ▶ Answer: {q['equation']}")
+
+
+temp = []
+count = 0 
+data = []
+
+if data == []: 
+    data = parse_data()
+def definition(): 
+    usr = input("Type a key word to search for definition (or press enter to reveal def)")
+    print()
+    if usr == "q": 
+        break 
+    if usr == "r": 
+        count = 0 
+        print("Count reset.")
+        print(f"Number of Times: ", count) 
+    elif usr != "": 
+        found = False 
+        for char in data: 
+            if char.lower().startswith(usr.lower()): 
+                found = True 
+                print(char)
+        if found is False: 
+            print("Definition not found.")
+    else: 
+        count += 1
+        rand = random.choice(data).rstrip()
+        while rand in temp: 
+            rand = random.choice(data).rstrip()
+        print(rand)
+        temp.append(rand)
+        if len(temp) >= 15: 
+            temp = [] 
+        print(f"Number of Times: ", count) 
+        
+### WEBSITE IMPLEMENTATION  
 app = Flask(__name__)
 
-
-@app.route('/')
-def index():
+@app.route("/") 
+def home(): 
     return render_template("index.html")
 
-@app.route('/add', methods=['POST'])
-def add(): 
-    name = request.form.get('name')
-    date = request.form['date']
-    desc = request.form.get('description')
-    severity = request.form['severity'].lower()
 
-    if severity not in ['low', 'medium', 'high']: 
-        return "Invalid severity level"
-
-    try: 
-        datetime.strptime(date, "%Y-%m-%d")
-    except ValueError: 
-        return "Invalid date format"
-
-    new_offence = [name, date, desc, severity]
-    
-    # file closes after with block 
-    with open("offences.csv", "a") as file: 
-        writer = csv.writer(file) 
-        writer.writerow(new_offence)
-
-    return redirect("/")
-
-if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__": 
+    app.run()

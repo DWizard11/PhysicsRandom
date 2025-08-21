@@ -3,27 +3,3 @@ body {
     font-family: "Segoe UI"; 
     
 }
-
-table {
-    width: 100%;
-    text-align: center;
-    
-}
-
-td, th {
-    border: 2px solid black; 
-    padding: 20px;
-}
-
-.severity-low {
-    background-color: yellow; 
-}
-
-.severity-medium {
-    background-color: orange; 
-}
-
-.severity-high {
-    background-color: red; 
-    color: white
-}
