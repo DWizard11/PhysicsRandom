@@ -8,7 +8,7 @@
 
         <body class="bg-comic-paper">
             <header class="bg-doghouse-header" style="padding:2rem;">
-                <h1 style="color:var(--snoopy-white); margin:0;">Physics Quiz</h1>
+                <h1 style="color:var(--snoopy-white); margin:0;">Physics Quiz: {{ topic }}</h1>
             </header>
         
             <!-- Zigzag divider -->
@@ -23,14 +23,11 @@
 
             <main style="padding:2rem;">
                 <div class="card">
-                    <form method="POST", action="/definition">
-                        <label for='topic'>Choose A Topic: </label>
-                        <select name="topic"> 
-                            {% for item in topic_list %}
-                            <option value="{{ item }}">{{ item }}</option>
-                            {% endfor %}
-                        </select> 
-                        <button class="btn">Quiz Me</button>
+                    <p>{{ question }}</p>
+                    <form method="POST", action="/answer">
+                        <label for='answer'>Answer: </label>
+                        <input type='text' name='answer'>
+                        <button class="btn">Submit</button>
                     </form>
 
                 </div>

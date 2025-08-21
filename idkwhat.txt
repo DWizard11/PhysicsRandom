@@ -129,8 +129,7 @@ numbers of neutrons in their nuclei.
 Mass defect of an atom is the difference in mass between the mass of the constituent particles of an atom and the (smaller) mass of the whole atom.
 There is equivalence between mass and energy, given by E = mc2
 The nucleon number, charge, momentum and mass-energy are all conserved in nuclear processes.
-The conservation of mass-energy indicates that the total amount of energy, including energy that is
-equivalent to mass (E = mc2), remains constant.
+The conservation of mass-energy indicates that the total amount of energy, including energy that is equivalent to mass (E = mc2), remains constant.
 The Nuclear Binding Energy can be defined as the energy required to separate the nucleus into individual protons and neutrons. It is the energy equivalent of the mass defect of a nucleus. (Or The Nuclear Binding Energy can be defined as the energy released when a nucleus is formed from its constituent particles (protons and neutrons). It is the energy equivalent of the mass defect of a nucleus.)
 Nuclear Binding Energy per nucleon is the average energy released per nucleon when a nucleus is formed from its constituent particles (protons and neutrons). It is obtained by dividing the binding energy by the number of nucleons in the nucleus. (Or Nuclear Binding Energy per nucleon is the average energy required per nucleon to break down a nucleus into its constituent particles (protons and neutrons). It is obtained by dividing the binding energy by the number of nucleons in the nucleus.)
 Nuclear Fission is the splitting of a nucleus of high nucleon number into two smaller nuclei of approximately equal mass with the release of energy and neutrons.

@@ -1,4 +1,4 @@
-quiz_bank = {
+{
     "Measurements": {
         "definitions": [
             {"question": "Define Systematic Error", "answer": "Systematic error will result in all readings having a constant error in one direction."},

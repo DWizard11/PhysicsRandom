@@ -1,12 +1,12 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect 
 import json 
 import random 
 ### FUNCTION DEFINITIONS ###
 def parse_data(): 
-    with open("h2_physics_equations.json", "r", encoding='utf-8') as file: 
+    """Reads and parse the definition qn bank """
+    with open("h2_definition.json", "r", encoding='utf-8') as file: 
         eqn = json.load(file) 
-        random.shuffle(eqn)
-        
+    '''
     with open("idkwhat.txt", "r", encoding='utf-8') as file: 
         data = []
         for line in file: 
@@ -15,7 +15,8 @@ def parse_data():
             except: 
                 continue
     random.shuffle(data)
-    return data
+    '''
+    return eqn
 
 def normalise(s):
     # crude normalisation: strip spaces, lowercase, collapse multiple equals signs formatting
@@ -74,6 +75,51 @@ def definition(usr):
         if len(temp) >= 15: 
             temp = [] 
         print(f"Number of Times: ", count) 
+
+
+### VARIABLE DEFINITIONS ###
+qn_bank = parse_data()
+topic_list = []
+for topic, value in qn_bank.items(): 
+    topic_list.append(topic)
+topic_list.append("Ask Me Random")
+
+
+print(random.choice(qn_bank["Measurements"]["definitions"]))
+
+
+### WEBSITE IMPLEMENTATION  ###
+app = Flask(__name__)
+
+@app.route("/", methods=["POST", "GET"]) 
+def home(): 
+    # process definitions 
+    topic = "" 
+    firstTime = True 
+    if topic == "": 
+        firstTime = True 
+    return render_template("index.html", firstTime=firstTime, topic_list=topic_list)
+
+@app.route("/definition", methods=["POST", "GET"])
+def definition(): 
+    if request.method == "POST": 
+        topic = request.form.get("topic") 
+        if topic == "Ask Me Random": 
+            topic = random.choice(topic_list) 
+            
+        question = random.choice(qn_bank[topic]["definitions"])["question"]
+        
+        return render_template("definition.html", topic=topic, question=question)
+
+    # random? 
+    return render_template("definition.html")
+
+
+    
+if __name__ == "__main__": 
+    app.run()
+
+
 
 
 
@@ -351,15 +397,3 @@ quiz_bank = {
         ]
     }
 }
-
-
-### WEBSITE IMPLEMENTATION  ###
-app = Flask(__name__)
-
-@app.route("/") 
-def home(): 
-    return render_template("index.html")
-
-
-if __name__ == "__main__": 
-    app.run()
