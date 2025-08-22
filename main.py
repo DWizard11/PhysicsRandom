@@ -1,6 +1,8 @@
-from flask import Flask, render_template, url_for, request, redirect 
+from flask import Flask, render_template, url_for, request, redirect, session
 import json 
 import random 
+import os 
+
 ### FUNCTION DEFINITIONS ###
 def parse_data(): 
     """Reads and parse the definition qn bank """
@@ -91,6 +93,7 @@ print(random.choice(qn_bank["Measurements"]["definitions"]))
 ### WEBSITE IMPLEMENTATION  ###
 app = Flask(__name__)
 
+app.secret_key = os.environ.get('FLASK_SECRET_KEY') 
 @app.route("/", methods=["POST", "GET"]) 
 def home(): 
     # process definitions 
@@ -108,12 +111,23 @@ def definition():
             topic = random.choice(topic_list) 
             
         question = random.choice(qn_bank[topic]["definitions"])["question"]
+        session["question"] = question 
         
         return render_template("definition.html", topic=topic, question=question)
 
     # random? 
     return render_template("definition.html")
 
+@app.route("/answer", methods=["POST", "GET"])
+def answer(): 
+    if request.method == "POST": 
+        answer = request.form.get("answer")
+        try: 
+            question = session.get("question") 
+        except: 
+            question = None 
+        # add in answer handling 
+        print(question) 
 
 
     
