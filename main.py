@@ -47,8 +47,7 @@ topic_list = []
 for topic, value in qn_bank.items(): 
     topic_list.append(topic)
 topic_list.append("Ask Me Random")
-
-
+answered_qns = []
 
 ### WEBSITE IMPLEMENTATION  ###
 app = Flask(__name__)
@@ -59,6 +58,7 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 def home(): 
     # process definitions 
     topic = "" 
+    session["answered_qns"] = []
     firstTime = True 
     if topic == "": 
         firstTime = True 
@@ -73,6 +73,7 @@ def definition():
             
         question_set = random.choice(qn_bank[topic]["definitions"])
         question = question_set["question"]
+        session["question_set"] = question_set
         session["question"] = question 
         session["topic"] = topic 
         session["correct_answer"] = question_set["answer"]
@@ -80,8 +81,27 @@ def definition():
         
         return render_template("definition.html", topic=topic, question=question)
 
-    # random? 
-    return render_template("definition.html")
+    # next question 
+    question_set = session.get("question_set")
+    answered_qns = session.get("answered_qns")
+    answered_qns.append(question_set)
+    topic = session.get("topic")
+
+    if len(answered_qns) == len(qn_bank[topic]["definitions"]): 
+        answered_qns = []
+        
+    new_question_set = random.choice(qn_bank[topic]["definitions"])
+    while new_question_set in answered_qns: 
+        new_question_set = random.choice(qn_bank[topic]["definitions"])
+        
+    question = new_question_set["question"]
+    session["question_set"] = new_question_set
+    session["question"] = question 
+    session["topic"] = topic 
+    session["correct_answer"] = question_set["answer"]
+    session["answered_qns"] = answered_qns 
+    
+    return render_template("definition.html", topic=topic, question=question)
 
 @app.route("/answer", methods=["POST", "GET"])
 def answer(): 
@@ -109,7 +129,7 @@ def answer():
             prompt = "" 
         '''
         
-        return render_template("answer.html", question=question, topic=topic, correct_answer=correct_answer)
+        return render_template("answer.html", question=question, topic=topic, correct_answer=correct_answer, answer=answer)
 
 
 

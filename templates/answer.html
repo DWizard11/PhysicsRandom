@@ -27,12 +27,24 @@
 
                 </div>
                 <div class="card">
-                    <p>This is the answer: {{ correct_answer }}</p>
-                    <p>Your Answer: {{ answer }}</p>
+                    <p class="answer-p">This is the answer: {{ correct_answer }}</p>
+                    <p class="answer-p">Your Answer: {{ answer }}</p>
                 </div>
 
 
             </main>
+            <br>
+
+            <div class="button-container">
+                <form method="GET" action="/">
+                    <button class="btn">Go Home</button>
+                </form>
+
+                <form method="GET" action="/definition">
+                    <button class="btn">Next Question</button>
+                </form>
+            </div>
+
 
 
 
