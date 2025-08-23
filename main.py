@@ -21,6 +21,100 @@ def parse_data():
     '''
     return eqn
 
+def get_answer(prompt):
+    query = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    response = query.choices[0].text
+    return response
+
+### VARIABLE DEFINITIONS ###
+qn_bank = parse_data()
+
+topic_list = []
+for topic, value in qn_bank.items(): 
+    topic_list.append(topic)
+topic_list.append("Ask Me Random")
+
+
+
+### WEBSITE IMPLEMENTATION  ###
+app = Flask(__name__)
+
+app.secret_key = os.environ.get('FLASK_SECRET_KEY') 
+openai.secret_key = os.environ.get("OPENAI_SECRET_KEY")
+
+@app.route("/", methods=["POST", "GET"]) 
+def home(): 
+    # process definitions 
+    topic = "" 
+    firstTime = True 
+    if topic == "": 
+        firstTime = True 
+    return render_template("index.html", firstTime=firstTime, topic_list=topic_list, qn_bank=qn_bank)
+
+@app.route("/definition", methods=["POST", "GET"])
+def definition(): 
+    if request.method == "POST": 
+        topic = request.form.get("topic") 
+        if topic == "Ask Me Random": 
+            topic = random.choice(topic_list) 
+            
+        question_set = random.choice(qn_bank[topic]["definitions"])
+        question = question_set["question"]
+        session["question"] = question 
+        session["topic"] = topic 
+        session["correct_answer"] = question_set["answer"]
+        
+        
+        return render_template("definition.html", topic=topic, question=question)
+
+    # random? 
+    return render_template("definition.html")
+
+@app.route("/answer", methods=["POST", "GET"])
+def answer(): 
+    if request.method == "POST": 
+        answer = request.form.get("answer")
+        try: 
+            question = session.get("question") 
+            topic = session.get("topic")
+            correct_answer = session.get("correct_answer")
+        except: 
+            question = None
+            topic = None 
+            correct_answer = None
+        # add in answer handling 
+        if question is not None or correct_answer is not None: 
+            prompt = f'''
+                With regard to the H2 Physics GCE A Level Syllabus, this is the question: {question}, 
+                can you check if this answer: {answer} is correct with accordance to this question? Please give feedback as though as you are a 
+                H2 Physics Teacher, giving feedback to a JC2 Student. 
+                For reference, this is the model answer: {correct_answer}
+            '''
+            reply = get_answer(prompt)
+        else: 
+            print("invalid") 
+            prompt = "" 
+        return render_template("answer.html", question=question, topic=topic, answer=answer, reply=reply)
+
+
+
+    
+if __name__ == "__main__": 
+    app.run(debug=True, port=5000)
+
+
+
+
+
+'''
 def normalise(s):
     # crude normalisation: strip spaces, lowercase, collapse multiple equals signs formatting
     s = s.strip().lower()
@@ -78,344 +172,4 @@ def definition(usr):
         if len(temp) >= 15: 
             temp = [] 
         print(f"Number of Times: ", count) 
-
-
-### VARIABLE DEFINITIONS ###
-qn_bank = parse_data()
-
-topic_list = []
-for topic, value in qn_bank.items(): 
-    topic_list.append(topic)
-topic_list.append("Ask Me Random")
-
-
-
-
-
-### WEBSITE IMPLEMENTATION  ###
-app = Flask(__name__)
-
-app.secret_key = os.environ.get('FLASK_SECRET_KEY') 
-openai.secret_key = os.environ.get("OPENAI_SECRET_KEY")
-
-@app.route("/", methods=["POST", "GET"]) 
-def home(): 
-    # process definitions 
-    topic = "" 
-    firstTime = True 
-    if topic == "": 
-        firstTime = True 
-    return render_template("index.html", firstTime=firstTime, topic_list=topic_list, qn_bank=qn_bank)
-
-@app.route("/definition", methods=["POST", "GET"])
-def definition(): 
-    if request.method == "POST": 
-        topic = request.form.get("topic") 
-        if topic == "Ask Me Random": 
-            topic = random.choice(topic_list) 
-            
-        question = random.choice(qn_bank[topic]["definitions"])["question"]
-        session["question"] = question 
-        session["topic"] = topic 
-        
-        
-        return render_template("definition.html", topic=topic, question=question)
-
-    # random? 
-    return render_template("definition.html")
-
-@app.route("/answer", methods=["POST", "GET"])
-def answer(): 
-    if request.method == "POST": 
-        answer = request.form.get("answer")
-        try: 
-            question = session.get("question") 
-        except: 
-            question = None
-        # add in answer handling 
-        return redirect("home")
-        print(question) 
-
-
-    
-if __name__ == "__main__": 
-    app.run(debug=True, port=5000)
-
-
-
-
-
-
-### DATA FOR QUESTIONS ### 
-quiz_bank = {
-    "Measurements": {
-        "definitions": [
-            {"question": "Define Systematic Error", "answer": "Systematic error will result in all readings having a constant error in one direction."},
-            {"question": "Define Random Error", "answer": "Random error will result in a scatter of readings about a mean value."},
-            {"question": "Define Accuracy", "answer": "Accuracy is the degree to which a measurement approaches the true value."},
-            {"question": "Define Precision", "answer": "Precision is the degree of agreement of repeated measurements of the same quantity."},
-            {"question": "Define Scalar", "answer": "A scalar is a quantity that has magnitude only, not direction."},
-            {"question": "Define Vector", "answer": "A vector is a quantity having both magnitude and direction."}
-        ],
-        "equations": []
-    },
-    "Kinematics": {
-        "definitions": [
-            {"question": "Define Displacement", "answer": "Displacement is the distance of an object or a point, in a specified direction, from some reference point."},
-            {"question": "Define Speed", "answer": "Speed is distance travelled divided by the time taken."},
-            {"question": "Define Average Speed", "answer": "Average speed is the total distance travelled divided by the total time taken."},
-            {"question": "Define Velocity", "answer": "Velocity is the rate of change of displacement."},
-            {"question": "Define Average Velocity", "answer": "Average velocity is the total change of displacement divided by the total time taken."},
-            {"question": "Define Acceleration", "answer": "Acceleration is the rate of change of velocity."},
-            {"question": "Define Acceleration of Free Fall", "answer": "Acceleration of free fall is the acceleration of a body towards the surface of Earth when the only force acting on it is its weight."}
-        ],
-        "equations": [
-            {"question": "State the equation for Average Velocity", "answer": "Average velocity = total displacement / total time"},
-            {"question": "State the equation for Acceleration", "answer": "Acceleration = Δv / Δt"}
-        ]
-    },
-    "Dynamics": {
-        "definitions": [
-            {"question": "Define Mass", "answer": "Mass is the property of a body which resists change in motion (inertia)."},
-            {"question": "Define Weight", "answer": "Weight is the force experienced by a mass in a gravitational field."},
-            {"question": "Define Linear Momentum", "answer": "Linear momentum is the product of the mass of a body and its velocity."},
-            {"question": "Define Impulse", "answer": "Impulse is the product of a force acting on a body and the time of impact."},
-            {"question": "Define Resultant Force", "answer": "Resultant Force is proportional to the rate of change of momentum of a body and the change in momentum takes place in the direction of the force."},
-            {"question": "State the Principle of Conservation of Linear Momentum", "answer": "The total momentum of a system remains constant provided no resultant external force act on the system."},
-            {"question": "Define Elastic Collision", "answer": "An elastic collision is one in which the total kinetic energy remains the same."},
-            {"question": "Define Inelastic Collision", "answer": "An inelastic collision is one in which the total kinetic energy is not conserved."}
-        ],
-        "equations": [
-            {"question": "State the equation for Impulse", "answer": "Impulse = F × Δt = Δp"},
-            {"question": "State the equation for Momentum", "answer": "p = mv"}
-        ]
-    },
-    "Forces": {
-        "definitions": [
-            {"question": "State Newton’s First Law", "answer": "A body stays at rest or continues to move at constant velocity unless a resultant force acts on it."},
-            {"question": "State Newton’s Second Law", "answer": "The rate of change of momentum of a body is proportional to the resultant force acting on the body and takes place in the direction of the resultant force."},
-            {"question": "State Newton’s Third Law", "answer": "If body A exerts a force on body B, then body B will exert a force of the same type that is equal in magnitude and opposite in direction on body A."},
-            {"question": "Define Moment of a Force", "answer": "The turning effect of the force. It is equal to the product of the force and the perpendicular distance of the line of action of the force from the pivot."},
-            {"question": "Define Couple", "answer": "A couple consists of two equal and opposite parallel forces whose lines of action do not coincide. It tends to produce rotation only."},
-            {"question": "Define Torque of a Couple", "answer": "The torque of a couple is the turning effect of the couple. It is equal to the product of one of the forces and the perpendicular distance between the forces."},
-            {"question": "State the Principle of Moments", "answer": "For a system in equilibrium, there is no resultant moment about any point."},
-            {"question": "Conditions for a system to be in equilibrium", "answer": "No resultant force and No resultant torque about any point."}
-        ],
-        "equations": [
-            {"question": "State the equation for Torque of a Couple", "answer": "Torque = F × d (perpendicular distance between forces)"}
-        ]
-    },
-    "work energy power": {
-        "definitions": [
-            {"question": "Define Work Done", "answer": "Work done by a force is the product of the force and the displacement in the direction of the force."},
-            {"question": "Define Gravitational Potential Energy", "answer": "Gravitational Potential energy is the stored ability of an object to do work as a result of its mass and position."},
-            {"question": "Define Electric Potential Energy", "answer": "Electric Potential energy is the stored ability of object to do work as a result of its charge and position."},
-            {"question": "Define Elastic Potential Energy", "answer": "Elastic Potential energy is the stored ability of object to do work as a result of its shape."},
-            {"question": "State the Principle of Conservation of Energy", "answer": "Energy cannot be created or destroyed, but it can be converted from one form to another."},
-            {"question": "Define Power", "answer": "Power is the work done per unit time."}
-        ],
-        "equations": [
-            {"question": "State the equation for Work Done", "answer": "W = F × d"},
-            {"question": "State the equation for Power", "answer": "P = W / t"}
-        ]
-    },
-    "circular motion": {
-        "definitions": [
-            {"question": "Define Angular Displacement", "answer": "The angle through which an object turns, usually measured in radians (rad)."},
-            {"question": "Define Angular Velocity", "answer": "The rate of change of angular displacement."},
-            {"question": "Define One Radian", "answer": "One radian is the angle subtended at the centre of a circle by an arc equal in length to the radius."}
-        ],
-        "equations": [
-            {"question": "State the equation for Centripetal Acceleration", "answer": "a = v² / r"},
-            {"question": "State the equation for Centripetal Force", "answer": "F = mv² / r"}
-        ]
-    },
-    "gravitation": {
-        "definitions": [
-            {"question": "Define Field of Force", "answer": "A region of space surrounding a body within which it can exert a force on another similar body not in contact with it."},
-            {"question": "Define Gravitational Field", "answer": "A region of space where a mass experiences a force. The direction of the field is the direction of the force on the mass."},
-            {"question": "Define Gravitational Field Strength", "answer": "The gravitational force exerted per unit mass placed at that point."},
-            {"question": "State Newton’s Law of Gravitation", "answer": "The mutual force of attraction between any two point masses is proportional to the product of the masses and inversely proportional to the square of their separation."},
-            {"question": "Define Weightlessness", "answer": "The situation when a person experiences free fall and has zero contact force on him."},
-            {"question": "Define Gravitational Potential", "answer": "The gravitational potential at a point is the work done per unit mass in bringing a small test mass from infinity to that point."},
-            {"question": "Explain why Gravitational Potential is Negative", "answer": "Gravitational Potential is always negative because the gravitational potential is taken to be zero at infinity and gravitational forces are attractive, so work done by the external agent is negative."},
-            {"question": "Define Geostationary Orbit", "answer": "A circular orbit around the Earth in which a satellite would appear stationary to an observer on the Earth’s surface."}
-        ],
-        "equations": [
-            {"question": "State the equation for Gravitational Force", "answer": "F = Gm₁m₂ / r²"},
-            {"question": "State the equation for Gravitational Field Strength", "answer": "g = F / m = GM / r²"},
-            {"question": "State the equation for Gravitational Potential", "answer": "φ = -GM / r"}
-        ]
-    },
-    "wave motion": {
-        "definitions": [
-            {"question": "Define Wave", "answer": "A wave is a means by which energy may be transferred from one place to another as a result of oscillations."},
-            {"question": "Define Progressive Wave", "answer": "A wave in which energy is carried from one point to another by means of vibrations or oscillations within the wave."},
-            {"question": "Define Transverse Wave", "answer": "A wave in which the oscillations of the particles in the wave are at right angles to the direction of transfer of energy of the wave."},
-            {"question": "Define Longitudinal Wave", "answer": "A wave in which the oscillations of the particles in the wave are along the direction of transfer of energy of the wave."},
-            {"question": "Define Phase Difference", "answer": "A measure of how much one wave is out of step with another."},
-            {"question": "Define Phase Angle", "answer": "Gives a measure of the fraction of a cycle that has been completed by an oscillating particle or by a wave."},
-            {"question": "Define Wavelength", "answer": "The shortest distance between two points on a progressive wave which are vibrating in phase."},
-            {"question": "Define Wave Speed", "answer": "The distance travelled by the wave energy per unit time."},
-            {"question": "Define Polarisation", "answer": "Where the oscillations in a wave are confined to one direction only in a plane normal to the direction of transfer of energy of the wave."}
-        ],
-        "equations": [
-            {"question": "State the equation for Wave Speed", "answer": "v = f × λ"}
-        ]
-    },
-    "oscillations": {
-        "definitions": [
-            {"question": "Define Displacement in Oscillation", "answer": "Displacement is the linear distance of the oscillating body from its equilibrium position in a specified direction."},
-            {"question": "Define Amplitude", "answer": "Amplitude is the maximum displacement of an oscillating body from its equilibrium position."},
-            {"question": "Define Period", "answer": "Period is the time taken to complete one oscillation."},
-            {"question": "Define Frequency", "answer": "Frequency is the number of oscillations per unit time."},
-            {"question": "Define Angular Frequency", "answer": "Angular frequency ω is related to its natural frequency f by ω = 2πf."},
-            {"question": "Define Simple Harmonic Motion", "answer": "Motion of a body such that its acceleration is proportional to its displacement from equilibrium and is always directed towards that point."},
-            {"question": "Define Damped Oscillations", "answer": "Oscillations in which the amplitude diminishes with time as a result of resistive forces that reduce the total energy of the oscillations."},
-            {"question": "Define Critical Damping", "answer": "Occurs when the displacement of the body is reduced to zero in the minimum time possible without any oscillations occurring."},
-            {"question": "Define Forced Oscillation", "answer": "Produced when a body is acted upon by an external periodic driving force, causing it to oscillate at the driving frequency."},
-            {"question": "Define Resonance", "answer": "Occurs when the driving frequency of a body is equal to its natural frequency, giving a maximum amplitude of oscillation."}
-        ],
-        "equations": [
-            {"question": "State the equation for Angular Frequency", "answer": "ω = 2πf"}
-        ]
-    },
-    "superposition": {
-        "definitions": [
-            {"question": "State the Principle of Superposition", "answer": "When two waves meet at a point, the resultant displacement is equal to the vector sum of the individual displacements."},
-            {"question": "Define Stationary Wave", "answer": "A wave in which vibrational energy is stored, rather than transmitted as in a progressive wave. It is set up as a result of the superposition of two waves of the same amplitude and frequency travelling at the same speed in opposite directions."},
-            {"question": "Define Node", "answer": "A point on a stationary wave where the amplitude of the vibration is zero or minimum."},
-            {"question": "Define Antinode", "answer": "A point on a stationary wave where the amplitude of the vibration is maximum."},
-            {"question": "Define Diffraction", "answer": "The spreading of waves when they pass through an opening or round an obstacle. Diffraction effects are greatest when the width of the opening is comparable with the wavelength of the waves."},
-            {"question": "Define Coherence", "answer": "Two waves that have a constant phase difference."},
-            {"question": "Define Interference", "answer": "An effect that occurs when two or more waves overlap to produce a new wave pattern, i.e. a change in amplitude."},
-            {"question": "Define Path Difference", "answer": "The difference in distance travelled by the two waves from their respective sources to a given point."},
-            {"question": "State the Rayleigh Criterion", "answer": "The images of two point objects is considered just resolved when the central maximum of one diffraction pattern coincides with the first minimum of the other."}
-        ],
-        "equations": []
-    },
-    "Ideal Gas": {
-        "definitions": [
-            {"question": "Define Ideal Gas", "answer": "An ideal gas is one which obeys the equation of state pV = nRT at all pressures, volumes and temperatures."},
-            {"question": "State the Assumptions of the Kinetic Theory of Gases", "answer": "1. Gas consists of a large number of identical molecules, 2. Molecules are in rapid random motion, 3. No inter-molecular forces except during collisions, 4. Volume of molecules is negligible, 5. Collisions are elastic, 6. Collision time is negligible compared to interval between collisions."},
-            {"question": "Define Avogadro Constant", "answer": "The number of atoms in 0.012 kg of carbon-12."},
-            {"question": "Define One Mole", "answer": "One mole of any substance is the amount containing 6.02 × 10^23 particles."}
-        ],
-        "equations": [
-            {"question": "State the Ideal Gas Equation", "answer": "pV = nRT"}
-        ]
-    },
-    "first law of thermodynamic": {
-        "definitions": [
-            {"question": "Define Specific Heat Capacity", "answer": "The thermal energy required per unit mass per unit change in temperature of the substance."},
-            {"question": "Define Specific Latent Heat", "answer": "The thermal energy per unit mass required to change the state of a substance without any change of temperature."},
-            {"question": "Define Internal Energy", "answer": "The sum of a random distribution of kinetic and potential energies associated with the molecules of a system."},
-            {"question": "State the First Law of Thermodynamics", "answer": "The increase in internal energy of a system is equal to the sum of heat supplied to the system and the work done on the system."}
-        ],
-        "equations": [
-            {"question": "State the First Law of Thermodynamics Equation", "answer": "ΔU = q + W"}
-        ]
-    },
-    "current electricity": {
-        "definitions": [
-            {"question": "Define Electric Current", "answer": "Electric Current is the rate of flow of charge."},
-            {"question": "Define Potential Difference", "answer": "The potential difference between two points in a circuit is the energy per unit charge transferred from electrical energy to other forms of energy when charge passes from one point to the other."},
-            {"question": "Define Electromotive Force (emf)", "answer": "The electromotive force is the energy transferred per unit charge from other forms of energy into electrical energy when charge is moved round a complete circuit."},
-            {"question": "Define Resistance", "answer": "The resistance of a conductor is defined as the ratio of the potential difference across it to the current passing through it."},
-            {"question": "State the property of NTC thermistor", "answer": "The resistance of negative temperature coefficient (NTC) thermistors decreases as temperature increases."}
-        ],
-        "equations": [
-            {"question": "State Ohm's Law", "answer": "V = IR"}
-        ]
-    },
-    "DC Circuits": {
-        "definitions": [],
-        "equations": [
-            {"question": "State the equation for Electrical Power", "answer": "P = VI = I²R = V² / R"}
-        ]
-    },
-    "electromagnetism": {
-        "definitions": [
-            {"question": "Define Magnetic Flux Density", "answer": "The magnetic flux density is defined as the force acting per unit current per unit length on a conductor placed perpendicular to the magnetic field."},
-            {"question": "Define Magnetic Field", "answer": "A magnetic field is a region of space where a magnetic pole, a current-carrying conductor or a moving charged particle will experience a force."},
-            {"question": "Define Magnetic Flux", "answer": "Magnetic flux is the product of an area and the component of the magnetic flux density perpendicular to that area."}
-        ],
-        "equations": []
-    },
-    "electromagnetic induction": {
-        "definitions": [
-            {"question": "Define Magnetic Flux Linkage", "answer": "Magnetic Flux Linkage in a coil is the product of the area of the coil, the component of the magnetic flux density perpendicular to that area, and the number of turns in the coil."},
-            {"question": "State Faraday’s Law", "answer": "The emf induced in a conductor is proportional to the rate of change of magnetic flux linkage."},
-            {"question": "State Lenz's Law", "answer": "The direction of the induced emf is such that it tends to produce effects to oppose the change causing it."}
-        ],
-        "equations": [
-            {"question": "State Faraday’s Law Equation", "answer": "ε = - dΦ/dt"}
-        ]
-    },
-    "AC": {
-        "definitions": [
-            {"question": "Define Alternating Current (AC)", "answer": "A current that varies periodically in direction."},
-            {"question": "Define Root-Mean-Square Current", "answer": "The steady direct current which produces heat at the same rate as the alternating current in a given resistor."},
-            {"question": "Define Root-Mean-Square Voltage", "answer": "The steady direct voltage which produces heat at the same rate as the alternating voltage across a given resistor."}
-        ],
-        "equations": []
-    },
-    "Quantum": {
-        "definitions": [
-            {"question": "Define Photon", "answer": "A quantum of electromagnetic energy which is dependent only on the frequency of the radiation."},
-            {"question": "Define Photoelectric Effect", "answer": "The ejection of an electron from a metal surface when the surface is irradiated with electromagnetic radiation of a high enough frequency."},
-            {"question": "Define Threshold Frequency", "answer": "The lowest frequency of radiation that ejects electrons from a particular metal surface."},
-            {"question": "Define Stopping Potential", "answer": "The minimum potential difference to reduce the photoelectric current to zero. All the kinetic energy of the most energetic electron will be converted into electrical potential energy, eVs."},
-            {"question": "Define Work Function Energy", "answer": "The minimum energy required to eject an electron from the metal surface."},
-            {"question": "Define Emission Line Spectra", "answer": "Consist of quite separate bright lines of definite wavelengths on a dark background and are given by luminous gases and vapours at low pressure."},
-            {"question": "Define Absorption Line Spectrum", "answer": "A continuous spectrum crossed by dark lines due to some missing frequencies and is produced when white light passes through a cooler gas or vapour."},
-            {"question": "Define Bremsstrahlung (Braking Radiation)", "answer": "Radiation which is emitted when fast-moving electrons are rapidly slowed down as they pass through the electric field around an atomic nucleus."},
-            {"question": "Define Characteristic X-Rays", "answer": "Emitted when an electron in an upper state (L- or M-shells) of an atom drops down to fill the vacated lower state (K-shell) that has its electron dislodged by the bombarding electrons. The pattern of the characteristic X-rays is unique to each element."},
-            {"question": "State the Heisenberg Uncertainty Principle", "answer": "If a measurement of the position of a particle is made with uncertainty Δx and a simultaneous measurement of its linear momentum is made with uncertainty Δpx, the product of the two uncertainties is restricted to Δpx Δx ≥ h. Another form relates energy and time: ΔE Δt ≥ h."}
-        ],
-        "equations": [
-            {"question": "Photon Energy Equation", "answer": "E = hf"},
-            {"question": "Photoelectric Effect Equation", "answer": "K.E(max) = hf - φ = eVs"}
-        ]
-    },
-    "nuclear": {
-        "definitions": [
-            {"question": "Define Mass Number/Nucleon Number", "answer": "The number of nucleons (protons and neutrons) found in the nucleus of an atom."},
-            {"question": "Define Atomic Number/Proton Number", "answer": "The number of protons in the nucleus of an atom."},
-            {"question": "Define Isotopes", "answer": "Two or more atoms of the same element, having the same number of protons but different numbers of neutrons in their nuclei."},
-            {"question": "Define Mass Defect", "answer": "The difference in mass between the mass of the constituent particles of an atom and the (smaller) mass of the whole atom."},
-            {"question": "State Mass-Energy Equivalence", "answer": "E = mc²"},
-            {"question": "State Conservation in Nuclear Processes", "answer": "The nucleon number, charge, momentum and mass-energy are all conserved in nuclear processes."},
-            {"question": "Define Nuclear Binding Energy", "answer": "The energy required to separate the nucleus into individual protons and neutrons. It is the energy equivalent of the mass defect."},
-            {"question": "Define Nuclear Binding Energy per Nucleon", "answer": "The average energy required per nucleon to break down a nucleus into its constituent particles. It is obtained by dividing the binding energy by the number of nucleons."},
-            {"question": "Define Nuclear Fission", "answer": "The splitting of a nucleus of high nucleon number into two smaller nuclei of approximately equal mass with the release of energy and neutrons."},
-            {"question": "Define Nuclear Fusion", "answer": "The formation of a larger nucleus from two nuclei of low nucleon number, with release of energy."},
-            {"question": "Define Spontaneous Decay", "answer": "The decay occurs on its own and is unaffected by environmental or external factors such as temperature and pressure."},
-            {"question": "Define Random Decay", "answer": "The nucleus has constant probability of decay per unit time. There is no way to predict when any individual nucleus will decay."},
-            {"question": "Define Radioactive Decay", "answer": "The spontaneous and random decay of a nucleus with the emission of an alpha particle or a beta particle, usually accompanied by a gamma ray photon."},
-            {"question": "Define Half-Life", "answer": "The average time taken for the activity of a particular radioactive nuclide to fall to half its initial value."},
-            {"question": "Define Radioactive Decay Constant", "answer": "The probability of decay per unit time of a nucleus."},
-            {"question": "Define Activity", "answer": "The number of nuclear disintegrations per unit time."},
-            {"question": "Define Count Rate", "answer": "The number of emissions received by a detector per unit time from a radioactive source, which may include the background radiation."},
-            {"question": "Define Background Count", "answer": "The number of counts recorded by a radiation detector from background radiation in the absence of a radioactive source."},
-            {"question": "Define Nucleon", "answer": "The collective name for proton and neutron."},
-            {"question": "Define Nuclide", "answer": "A particular species (type) of nucleus that is specified by its proton number and neutron number."}
-        ],
-        "equations": []
-    },
-    "electric field": {
-        "definitions": [
-            {"question": "Define Electric Field Strength", "answer": "The electric force exerted per unit positive charge acting on a small stationary charge placed at that point. It is numerically equal to the potential gradient at that point."},
-            {"question": "Define Electric Field", "answer": "A region of space where a stationary charge experiences a force."},
-            {"question": "Define Direction of Electric Field", "answer": "The direction of the force on a positive charge."},
-            {"question": "Define Electric Field Lines", "answer": "Lines that show the direction of the force acting on a stationary positive point charge in the field."},
-            {"question": "Define Electric Potential at a Point", "answer": "The work done per unit positive charge in moving a small test charge from infinity to that point."},
-            {"question": "State Coulomb’s Law", "answer": "The force between two point charges Q1 and Q2 is proportional to the product of the charges and inversely proportional to the square of their separation."}
-        ],
-        "equations": [
-            {"question": "Electric Field Equation", "answer": "E = F / q"},
-            {"question": "Electric Potential Equation", "answer": "V = W / q"},
-            {"question": "Coulomb’s Law Equation", "answer": "F = k Q1 Q2 / r²"}
-        ]
-    }
-}
+'''

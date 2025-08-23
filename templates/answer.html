@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html>
+        <head>
+            <meta charset='utf-8'>
+            <title>Physics Test</title>
+            <link rel="stylesheet" href="/static/style.css">
+        </head>
+
+        <body class="bg-comic-paper">
+            <header class="bg-doghouse-header" style="padding:2rem;">
+                <h1 style="color:var(--snoopy-white); margin:0;text-align:center;">Physics Quiz: {{ topic }}</h1>
+            </header>
+
+            <!-- Zigzag divider -->
+            <div class="zigzag-divider"></div>
+            <div class='photo'>
+                <img src="{{ url_for('static', filename='snoopy.jpg') }}" 
+                     alt="snoopy" 
+                     class="rounded-photo">
+
+            </div>
+
+
+            <main style="padding:2rem;">
+                <div class="card">
+                    <p class="snoopy-question">{{ question }}</p>
+
+                    <form method="POST", action="/answer">
+                        <textarea name="answer" class="snoopy-input" rows="3"></textarea>
+
+                        <div style="text-align:center; margin-top:10px;">
+                            <button class="btn">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </main>
+
+
+
+        </body>
+
+
+</html>
+
