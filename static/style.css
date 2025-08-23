@@ -91,6 +91,7 @@ body{
   border: 2px solid var(--ink-black);
   border-radius: 999px;
   padding: .6rem 1rem;
+  font-family: sans-serif; 
 }
 .btn:hover{ filter: brightness(1.05); }
 
@@ -182,6 +183,7 @@ padding: 1.5rem;
 max-width: 90%;   /* increase from 600px to 90% of screen */
 margin: auto;
 overflow-x: auto;
+  text-align: center;   /* centers content inside the card */
 }
 
 /* Table base */
@@ -221,3 +223,179 @@ overflow: hidden;
     transition: 0.3s;
     cursor: pointer;
 }
+
+/* Form */
+.form {
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif; 
+}
+.snoopy-select {
+  appearance: none;             /* remove default browser style */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #ff3b3f;    /* Snoopy doghouse red */
+  color: #fff;
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+
+  padding: 12px 18px;
+  border: 3px solid #000;       /* cartoony black outline */
+  border-radius: 12px;
+  box-shadow: 2px 4px 0 #000;
+  cursor: pointer;
+
+  /* add a custom arrow */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+}
+
+/* On hover */
+.snoopy-select:hover {
+  background-color: #e63946;
+  transform: translateY(-2px);
+  transition: 0.2s ease;
+}
+
+/* Option styling */
+.snoopy-select option {
+  background-color: #e6f7ff;    /* Snoopy sky blue */
+  color: #000;
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* Snoopy label styling */
+form label {
+  display: block;               /* put label above dropdown */
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff3b3f;               /* doghouse red */
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  border: 3px solid #000;       /* cartoony outline */
+  border-radius: 10px;
+  background-color: #fff;       /* Snoopy white */
+  box-shadow: 2px 4px 0 #000;   /* cartoon pop-out */
+  display: inline-block;        /* so it hugs the text */
+  transform: rotate(-2deg);     /* playful tilt */
+}
+
+/* Snoopy-styled submit button */
+form .btn {
+  background-color: #ff3b3f;   /* doghouse red */
+  color: #fff;
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: 3px solid #000;      /* cartoony outline */
+  border-radius: 12px;
+  box-shadow: 2px 4px 0 #000;  /* cartoon shadow */
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;                    /* space between paw + text */
+}
+
+/* Hover effect */
+form .btn:hover {
+  background-color: #e63946;   /* slightly darker red */
+  transform: translateY(-3px);
+  box-shadow: 3px 6px 0 #000;
+}
+
+/* Add paw print before text */
+form .btn::before {
+  content: "🐾";
+  font-size: 1.2rem;
+}
+main {
+  display: flex;
+  justify-content: center;   /* centers horizontally */
+}
+
+.snoopy-question {
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #000;
+  background-color: #fff;
+  border: 3px solid #000;
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  box-shadow: 3px 5px 0 #000;
+  display: inline-block;
+  max-width: 80%;
+  margin-bottom: 1.5rem;
+  transform: rotate(-1.5deg); /* playful tilt */
+}
+
+/* Optional: slight "wiggle" animation on load */
+@keyframes wiggle {
+  0%   { transform: rotate(-1.5deg); }
+  25%  { transform: rotate(1.5deg); }
+  50%  { transform: rotate(-1deg); }
+  75%  { transform: rotate(1deg); }
+  100% { transform: rotate(-1.5deg); }
+}
+
+.snoopy-question {
+  animation: wiggle 0.6s ease;
+}
+
+.snoopy-input {
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+  font-size: 1.1rem;
+  padding: 12px 16px;
+  border: 3px solid #000;       
+  border-radius: 15px;
+  background-color: #fff;       
+  box-shadow: 2px 4px 0 #000;   
+  outline: none;
+  resize: none;                 
+  display: block;
+  width: 100%;
+  max-width: 100%;              /* prevents overflow */
+  margin-top: 10px;
+  box-sizing: border-box;       /* include padding + border in width */
+}
+
+/* On focus */
+.snoopy-input:focus {
+  background-color: #e6f7ff;     /* Snoopy sky blue */
+  border-color: #ff3b3f;         /* doghouse red outline */
+  box-shadow: 3px 5px 0 #000;
+}
+
+/* Bubble tail (reply pointing right) */
+.snoopy-input::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -20px;                  /* place tail to right */
+  transform: translateY(-50%) rotate(25deg);
+  border: 12px solid transparent;
+  border-left-color: #fff;       /* fill matches bubble */
+  z-index: 1;
+}
+
+/* Outline for the tail */
+.snoopy-input::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -24px;
+  transform: translateY(-50%) rotate(25deg);
+  border: 14px solid transparent;
+  border-left-color: #000;       /* black outline */
+  z-index: 0;
+}
+
+
+

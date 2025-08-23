@@ -8,7 +8,7 @@
 
         <body class="bg-comic-paper">
             <header class="bg-doghouse-header" style="padding:2rem;">
-                <h1 style="color:var(--snoopy-white); margin:0;">Physics Quiz</h1>
+                <h1 style="color:var(--snoopy-white); margin:0;text-align:center;">Physics Quiz</h1>
             </header>
         
             <!-- Zigzag divider -->
@@ -24,18 +24,47 @@
             <main style="padding:2rem;">
                 <div class="card">
                     <form method="POST", action="/definition">
-                        <label for='topic'>Choose A Topic: </label>
-                        <select name="topic"> 
-                            {% for item in topic_list %}
-                            <option value="{{ item }}">{{ item }}</option>
-                            {% endfor %}
-                        </select> 
-                        <button class="btn">Quiz Me</button>
+                      <label for="topic">Choose a topic:</label>
+                      <select id="topics" name="topic" class="snoopy-select">
+                        {% for item in topic_list %}
+                          <option value="{{ item }}">{{ item }}</option>
+                        {% endfor %}
+                      </select>
+                      <button type="submit" class="btn">Quiz Me!</button>
+
                     </form>
 
                 </div>
 
                 
+            </main>
+            <main style="padding:2rem;">
+                <div class="card snoopy-card">
+                    {% for key, value in qn_bank.items() %}
+                    <h2 style="text-align: center;">{{ key }}</h2>
+                    <table class="snoopy-table">
+                        <thead>
+                            <tr>
+                                <th>Defintions</th>
+                                <th>Answers</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for q, a in value.items() %}
+                                {% for item in a %} 
+                                <tr>
+                                    <td>{{ item["question"] }}</td>
+                                    <td>{{ item["answer"] }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                        
+                    </table>
+                    <br>
+                    {% endfor %} 
+                </div>
             </main>
             
             

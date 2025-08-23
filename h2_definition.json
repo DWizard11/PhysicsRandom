@@ -56,7 +56,7 @@
             {"question": "State the equation for Torque of a Couple", "answer": "Torque = F × d (perpendicular distance between forces)"}
         ]
     },
-    "work energy power": {
+    "Work, Energy and Power": {
         "definitions": [
             {"question": "Define Work Done", "answer": "Work done by a force is the product of the force and the displacement in the direction of the force."},
             {"question": "Define Gravitational Potential Energy", "answer": "Gravitational Potential energy is the stored ability of an object to do work as a result of its mass and position."},
@@ -70,7 +70,7 @@
             {"question": "State the equation for Power", "answer": "P = W / t"}
         ]
     },
-    "circular motion": {
+    "Circular Motion": {
         "definitions": [
             {"question": "Define Angular Displacement", "answer": "The angle through which an object turns, usually measured in radians (rad)."},
             {"question": "Define Angular Velocity", "answer": "The rate of change of angular displacement."},
@@ -81,7 +81,7 @@
             {"question": "State the equation for Centripetal Force", "answer": "F = mv² / r"}
         ]
     },
-    "gravitation": {
+    "Gravitation": {
         "definitions": [
             {"question": "Define Field of Force", "answer": "A region of space surrounding a body within which it can exert a force on another similar body not in contact with it."},
             {"question": "Define Gravitational Field", "answer": "A region of space where a mass experiences a force. The direction of the field is the direction of the force on the mass."},
@@ -98,7 +98,7 @@
             {"question": "State the equation for Gravitational Potential", "answer": "φ = -GM / r"}
         ]
     },
-    "wave motion": {
+    "Wave Motion": {
         "definitions": [
             {"question": "Define Wave", "answer": "A wave is a means by which energy may be transferred from one place to another as a result of oscillations."},
             {"question": "Define Progressive Wave", "answer": "A wave in which energy is carried from one point to another by means of vibrations or oscillations within the wave."},
@@ -114,7 +114,7 @@
             {"question": "State the equation for Wave Speed", "answer": "v = f × λ"}
         ]
     },
-    "oscillations": {
+    "Oscillations": {
         "definitions": [
             {"question": "Define Displacement in Oscillation", "answer": "Displacement is the linear distance of the oscillating body from its equilibrium position in a specified direction."},
             {"question": "Define Amplitude", "answer": "Amplitude is the maximum displacement of an oscillating body from its equilibrium position."},
@@ -131,7 +131,7 @@
             {"question": "State the equation for Angular Frequency", "answer": "ω = 2πf"}
         ]
     },
-    "superposition": {
+    "Superposition": {
         "definitions": [
             {"question": "State the Principle of Superposition", "answer": "When two waves meet at a point, the resultant displacement is equal to the vector sum of the individual displacements."},
             {"question": "Define Stationary Wave", "answer": "A wave in which vibrational energy is stored, rather than transmitted as in a progressive wave. It is set up as a result of the superposition of two waves of the same amplitude and frequency travelling at the same speed in opposite directions."},
@@ -145,7 +145,7 @@
         ],
         "equations": []
     },
-    "Ideal Gas": {
+    "Ideal Gas Law": {
         "definitions": [
             {"question": "Define Ideal Gas", "answer": "An ideal gas is one which obeys the equation of state pV = nRT at all pressures, volumes and temperatures."},
             {"question": "State the Assumptions of the Kinetic Theory of Gases", "answer": "1. Gas consists of a large number of identical molecules, 2. Molecules are in rapid random motion, 3. No inter-molecular forces except during collisions, 4. Volume of molecules is negligible, 5. Collisions are elastic, 6. Collision time is negligible compared to interval between collisions."},
@@ -156,7 +156,7 @@
             {"question": "State the Ideal Gas Equation", "answer": "pV = nRT"}
         ]
     },
-    "first law of thermodynamic": {
+    "First Law of Thermodynamic": {
         "definitions": [
             {"question": "Define Specific Heat Capacity", "answer": "The thermal energy required per unit mass per unit change in temperature of the substance."},
             {"question": "Define Specific Latent Heat", "answer": "The thermal energy per unit mass required to change the state of a substance without any change of temperature."},
@@ -167,7 +167,7 @@
             {"question": "State the First Law of Thermodynamics Equation", "answer": "ΔU = q + W"}
         ]
     },
-    "current electricity": {
+    "Current Of Electricity": {
         "definitions": [
             {"question": "Define Electric Current", "answer": "Electric Current is the rate of flow of charge."},
             {"question": "Define Potential Difference", "answer": "The potential difference between two points in a circuit is the energy per unit charge transferred from electrical energy to other forms of energy when charge passes from one point to the other."},
@@ -185,7 +185,7 @@
             {"question": "State the equation for Electrical Power", "answer": "P = VI = I²R = V² / R"}
         ]
     },
-    "electromagnetism": {
+    "Electromagnetism": {
         "definitions": [
             {"question": "Define Magnetic Flux Density", "answer": "The magnetic flux density is defined as the force acting per unit current per unit length on a conductor placed perpendicular to the magnetic field."},
             {"question": "Define Magnetic Field", "answer": "A magnetic field is a region of space where a magnetic pole, a current-carrying conductor or a moving charged particle will experience a force."},
@@ -193,7 +193,7 @@
         ],
         "equations": []
     },
-    "electromagnetic induction": {
+    "Electromagnetic Induction": {
         "definitions": [
             {"question": "Define Magnetic Flux Linkage", "answer": "Magnetic Flux Linkage in a coil is the product of the area of the coil, the component of the magnetic flux density perpendicular to that area, and the number of turns in the coil."},
             {"question": "State Faraday’s Law", "answer": "The emf induced in a conductor is proportional to the rate of change of magnetic flux linkage."},
@@ -203,7 +203,7 @@
             {"question": "State Faraday’s Law Equation", "answer": "ε = - dΦ/dt"}
         ]
     },
-    "AC": {
+    "Alternating Current": {
         "definitions": [
             {"question": "Define Alternating Current (AC)", "answer": "A current that varies periodically in direction."},
             {"question": "Define Root-Mean-Square Current", "answer": "The steady direct current which produces heat at the same rate as the alternating current in a given resistor."},
@@ -211,7 +211,7 @@
         ],
         "equations": []
     },
-    "Quantum": {
+    "Quantum Physics": {
         "definitions": [
             {"question": "Define Photon", "answer": "A quantum of electromagnetic energy which is dependent only on the frequency of the radiation."},
             {"question": "Define Photoelectric Effect", "answer": "The ejection of an electron from a metal surface when the surface is irradiated with electromagnetic radiation of a high enough frequency."},
@@ -229,7 +229,7 @@
             {"question": "Photoelectric Effect Equation", "answer": "K.E(max) = hf - φ = eVs"}
         ]
     },
-    "nuclear": {
+    "Nuclear Physics": {
         "definitions": [
             {"question": "Define Mass Number/Nucleon Number", "answer": "The number of nucleons (protons and neutrons) found in the nucleus of an atom."},
             {"question": "Define Atomic Number/Proton Number", "answer": "The number of protons in the nucleus of an atom."},
@@ -254,7 +254,7 @@
         ],
         "equations": []
     },
-    "electric field": {
+    "Electric Field": {
         "definitions": [
             {"question": "Define Electric Field Strength", "answer": "The electric force exerted per unit positive charge acting on a small stationary charge placed at that point. It is numerically equal to the potential gradient at that point."},
             {"question": "Define Electric Field", "answer": "A region of space where a stationary charge experiences a force."},

@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, redirect, session
 import json 
 import random 
 import os 
+import openai 
 
 ### FUNCTION DEFINITIONS ###
 def parse_data(): 
@@ -81,19 +82,22 @@ def definition(usr):
 
 ### VARIABLE DEFINITIONS ###
 qn_bank = parse_data()
+
 topic_list = []
 for topic, value in qn_bank.items(): 
     topic_list.append(topic)
 topic_list.append("Ask Me Random")
 
 
-print(random.choice(qn_bank["Measurements"]["definitions"]))
+
 
 
 ### WEBSITE IMPLEMENTATION  ###
 app = Flask(__name__)
 
 app.secret_key = os.environ.get('FLASK_SECRET_KEY') 
+openai.secret_key = os.environ.get("OPENAI_SECRET_KEY")
+
 @app.route("/", methods=["POST", "GET"]) 
 def home(): 
     # process definitions 
@@ -101,7 +105,7 @@ def home():
     firstTime = True 
     if topic == "": 
         firstTime = True 
-    return render_template("index.html", firstTime=firstTime, topic_list=topic_list)
+    return render_template("index.html", firstTime=firstTime, topic_list=topic_list, qn_bank=qn_bank)
 
 @app.route("/definition", methods=["POST", "GET"])
 def definition(): 
@@ -112,6 +116,8 @@ def definition():
             
         question = random.choice(qn_bank[topic]["definitions"])["question"]
         session["question"] = question 
+        session["topic"] = topic 
+        
         
         return render_template("definition.html", topic=topic, question=question)
 
@@ -125,14 +131,15 @@ def answer():
         try: 
             question = session.get("question") 
         except: 
-            question = None 
+            question = None
         # add in answer handling 
+        return redirect("home")
         print(question) 
 
 
     
 if __name__ == "__main__": 
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
 
 
 
