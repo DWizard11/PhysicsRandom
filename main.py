@@ -2,7 +2,9 @@ from flask import Flask, render_template, url_for, request, redirect, session
 import json 
 import random 
 import os 
-import openai 
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ.get("OPENAI_SECRET_KEY"))
 
 ### FUNCTION DEFINITIONS ###
 def parse_data(): 
@@ -22,17 +24,21 @@ def parse_data():
     return eqn
 
 def get_answer(prompt):
-    query = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.5,
-    )
+    try:
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a friendly A-Level H2 Physics Teacher, teaching in Singapore and teaching a Junior College 2 Student by giving feedback to them about some questions."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.7,
+            max_tokens=200
+        )
+        reply = response.choices[0].message.content
+    except:
+        reply = "Sorry, the OpenAI quota has been exceeded. Please try again later."
+    return reply
 
-    response = query.choices[0].text
-    return response
 
 ### VARIABLE DEFINITIONS ###
 qn_bank = parse_data()
@@ -48,7 +54,6 @@ topic_list.append("Ask Me Random")
 app = Flask(__name__)
 
 app.secret_key = os.environ.get('FLASK_SECRET_KEY') 
-openai.secret_key = os.environ.get("OPENAI_SECRET_KEY")
 
 @app.route("/", methods=["POST", "GET"]) 
 def home(): 
@@ -91,18 +96,20 @@ def answer():
             topic = None 
             correct_answer = None
         # add in answer handling 
+        '''
         if question is not None or correct_answer is not None: 
-            prompt = f'''
+            prompt = f
                 With regard to the H2 Physics GCE A Level Syllabus, this is the question: {question}, 
-                can you check if this answer: {answer} is correct with accordance to this question? Please give feedback as though as you are a 
-                H2 Physics Teacher, giving feedback to a JC2 Student. 
+                can you check if this answer: {answer} is correct with accordance to this question? Please give feedback.
                 For reference, this is the model answer: {correct_answer}
-            '''
+            
             reply = get_answer(prompt)
         else: 
             print("invalid") 
             prompt = "" 
-        return render_template("answer.html", question=question, topic=topic, answer=answer, reply=reply)
+        '''
+        
+        return render_template("answer.html", question=question, topic=topic, correct_answer=correct_answer)
 
 
 
