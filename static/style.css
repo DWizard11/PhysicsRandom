@@ -21,7 +21,7 @@ body{
   margin:0;
   color: var(--ink-black);
   background-image: url("/static/bg_image.jpg");
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  font-family: 'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* --- Background options --- */
@@ -87,7 +87,7 @@ body{
   border: 2px solid var(--ink-black);
   border-radius: 999px;
   padding: .6rem 1rem;
-  font-family: sans-serif; 
+  font-family: 'Comic Neue', sans-serif; 
 }
 .btn:hover{ filter: brightness(1.05); }
 
@@ -160,15 +160,15 @@ body{
   position: absolute;
   top: 0;
   left: 0;
-  width: 200%;                 /* make pattern repeat nicely */
+  width: 100%;       /* instead of 200% */
   height: 100%;
   background: repeating-linear-gradient(
     -135deg,
-    var(--snoopy-black) 0 25px,    /* zigzag line color */
-    rgba(255,255,255,0.3) 25px 50px /* semi-transparent for smooth flow */
+    var(--snoopy-black) 0 25px,
+    rgba(255,255,255,0.3) 25px 50px
   );
-  transform: translateX(-25%) scaleY(1.2); /* tilt/stretch */
-  pointer-events: none;             /* allow clicks through */
+  transform: none;   /* remove translate/scale */
+  pointer-events: none;
   z-index: 10;
 }
 
@@ -419,4 +419,17 @@ main {
   color: #333;
   box-shadow: 2px 4px 6px rgba(0,0,0,0.15);
   position: relative;
+}
+
+
+/* Content container for cards and divider */
+.content-container {
+    max-width: 800px;   /* same as cards */
+    width: 90%;         /* responsive */
+    margin: 0 auto;     /* center horizontally */
+}
+
+/* Divider fills the container exactly */
+.divider-container {
+    width: 100%;
 }

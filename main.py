@@ -2,9 +2,6 @@ from flask import Flask, render_template, url_for, request, redirect, session
 import json 
 import random 
 import os 
-from openai import OpenAI
-
-client = OpenAI(api_key=os.environ.get("OPENAI_SECRET_KEY"))
 
 ### FUNCTION DEFINITIONS ###
 def parse_data(): 
@@ -22,23 +19,6 @@ def parse_data():
     random.shuffle(data)
     '''
     return eqn
-
-def get_answer(prompt):
-    try:
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a friendly A-Level H2 Physics Teacher, teaching in Singapore and teaching a Junior College 2 Student by giving feedback to them about some questions."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.7,
-            max_tokens=200
-        )
-        reply = response.choices[0].message.content
-    except:
-        reply = "Sorry, the OpenAI quota has been exceeded. Please try again later."
-    return reply
-
 
 ### VARIABLE DEFINITIONS ###
 qn_bank = parse_data()

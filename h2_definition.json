@@ -268,11 +268,5 @@
             {"question": "Electric Potential Equation", "answer": "V = W / q"},
             {"question": "Coulomb’s Law Equation", "answer": "F = k Q1 Q2 / r²"}
         ]
-    }, 
-    "TO DELETE": {
-        "definitions": [
-            {"question": "Why are my balls itchy", "answer": "cos you never scartthc"}, 
-            {"question": "What is this", "answer": "ajsjads"}
-        ]
     }
 }

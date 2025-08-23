@@ -10,62 +10,67 @@
             <header class="bg-doghouse-header" style="padding:2rem;">
                 <h1 style="color:var(--snoopy-white); margin:0;text-align:center;">Physics Quiz</h1>
             </header>
-        
-            <!-- Zigzag divider -->
-            <div class="zigzag-divider"></div>
-            <div class='photo'>
-                <img src="{{ url_for('static', filename='snoopy.jpg') }}" 
-                     alt="snoopy" 
-                     class="rounded-photo">
-
-            </div>
-
-
-            <main style="padding:2rem;">
-                <div class="card">
-                    <form method="POST", action="/definition">
-                      <label for="topic">Choose a topic:</label>
-                      <select id="topics" name="topic" class="snoopy-select">
-                        {% for item in topic_list %}
-                          <option value="{{ item }}">{{ item }}</option>
-                        {% endfor %}
-                      </select>
-                      <button type="submit" class="btn">Quiz Me!</button>
-
-                    </form>
-
+            
+            <div class="content-container">
+                <!-- Zigzag divider -->
+                <div class="divider-container">
+                        <div class="zigzag-divider"></div>
                 </div>
-
+    
+                <div class='photo'>
+                    <img src="{{ url_for('static', filename='snoopy.jpg') }}" 
+                         alt="snoopy" 
+                         class="rounded-photo">
+    
+                </div>
                 
-            </main>
-            <main style="padding:2rem;">
-                <div class="card snoopy-card">
-                    {% for key, value in qn_bank.items() %}
-                    <h2 style="text-align: center;">{{ key }}</h2>
-                    <table class="snoopy-table">
-                        <thead>
-                            <tr>
-                                <th>Defintions</th>
-                                <th>Answers</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {% for q, a in value.items() %}
-                                {% for item in a %} 
-                                <tr>
-                                    <td>{{ item["question"] }}</td>
-                                    <td>{{ item["answer"] }}</td>
-                                </tr>
-                                {% endfor %}
+    
+                <main style="padding:2rem;">
+                    <div class="card">
+                        <form method="POST", action="/definition">
+                          <label for="topic">Choose a topic:</label>
+                          <select id="topics" name="topic" class="snoopy-select">
+                            {% for item in topic_list %}
+                              <option value="{{ item }}">{{ item }}</option>
                             {% endfor %}
-                        </tbody>
-                        
-                    </table>
-                    <br>
-                    {% endfor %} 
-                </div>
-            </main>
+                          </select>
+                          <button type="submit" class="btn">Quiz Me!</button>
+    
+                        </form>
+    
+                    </div>
+    
+                    
+                </main>
+                <main style="padding:2rem;">
+                    <div class="card snoopy-card">
+                        {% for key, value in qn_bank.items() %}
+                        <h2 style="text-align: center;">{{ key }}</h2>
+                        <table class="snoopy-table">
+                            <thead>
+                                <tr>
+                                    <th>Defintions</th>
+                                    <th>Answers</th>
+                                </tr>
+                            </thead>
+    
+                            <tbody>
+                                {% for q, a in value.items() %}
+                                    {% for item in a %} 
+                                    <tr>
+                                        <td>{{ item["question"] }}</td>
+                                        <td>{{ item["answer"] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                            
+                        </table>
+                        <br>
+                        {% endfor %} 
+                    </div>
+                </main>
+            </div>
             
             
 
