@@ -21,7 +21,7 @@ body{
   margin:0;
   color: var(--ink-black);
   background-image: url("/static/bg_image.jpg");
-  font-family: 'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Comic Sans MS", 'Comic Neue', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* --- Background options --- */
@@ -87,7 +87,7 @@ body{
   border: 2px solid var(--ink-black);
   border-radius: 999px;
   padding: .6rem 1rem;
-  font-family: 'Comic Neue', sans-serif; 
+  font-family: "Comic Sans MS", 'Comic Neue', sans-serif; 
 }
 .btn:hover{ filter: brightness(1.05); }
 
@@ -416,7 +416,7 @@ main {
   border-radius: 1.5rem; /* rounded like a speech bubble */
   padding: 1rem 1.5rem;
   margin: 0.5rem 0;
-  font-family: "Comic Sans MS", "Comic Neue", cursive; /* playful font */
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif; /* playful font */
   font-size: 1.1rem;
   color: #333;
   box-shadow: 2px 4px 6px rgba(0,0,0,0.15);
