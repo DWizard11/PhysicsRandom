@@ -26,7 +26,7 @@ qn_bank = parse_data()
 topic_list = []
 for topic, value in qn_bank.items(): 
     topic_list.append(topic)
-topic_list.append("Ask Me Random")
+
 answered_qns = []
 
 ### WEBSITE IMPLEMENTATION  ###
@@ -42,57 +42,57 @@ def home():
     firstTime = True 
     if topic == "": 
         firstTime = True 
-    return render_template("index.html", firstTime=firstTime, topic_list=topic_list, qn_bank=qn_bank)
+    return render_template("index.html", firstTime=firstTime, topic_list=topic_list + ["Ask Me Random"], qn_bank=qn_bank)
 
 @app.route("/definition", methods=["POST", "GET"])
 def definition(): 
     if request.method == "POST": 
         topic = request.form.get("topic") 
         if topic == "Ask Me Random": 
-            topic = random.choice(topic_list) 
+            topic = random.choice(topic_list)
 
+        # Decide question type
         type_qn = random.choice(["definitions", "equations"])
-        if qn_bank[topic].get("equations", None) in [None, []]: 
+        if not qn_bank[topic].get("equations"): 
             type_qn = "definitions"
-        if qn_bank[topic].get("definitions", None) in [None, []]: 
+        if not qn_bank[topic].get("definitions"): 
             type_qn = "equations"
-            
+
+        # Pick first question
         question_set = random.choice(qn_bank[topic][type_qn])
-        question = question_set["question"]
         session["question_set"] = question_set
-        session["question"] = question 
+        session["question"] = question_set["question"]
         session["topic"] = topic 
         session["correct_answer"] = question_set["answer"]
-        
-        
-        return render_template("definition.html", topic=topic, question=question)
+        session["answered_qns"] = [question_set]  # start fresh
+        return render_template("definition.html", topic=topic, question=question_set["question"])
 
-    # next question 
-    question_set = session.get("question_set")
-    answered_qns = session.get("answered_qns")
-    answered_qns.append(question_set)
+    # GET: next question
     topic = session.get("topic")
+    answered_qns = session.get("answered_qns", [])
 
-    if len(answered_qns) == (len(qn_bank[topic]["definitions"]) + len(qn_bank[topic]["equations"])): 
+    all_qns = []
+    for key in ["definitions", "equations"]:
+        all_qns.extend(qn_bank[topic].get(key, []))
+
+    # If everything answered, reset
+    if len(answered_qns) >= len(all_qns): 
         answered_qns = []
-        
-    type_qn = random.choice(["definitions", "equations"])
-    if qn_bank[topic].get("equations", None) in [None, []]: 
-        type_qn = "definitions"
-    if qn_bank[topic].get("definitions", None) in [None, []]: 
-        type_qn = "equations"
-    new_question_set = random.choice(qn_bank[topic][type_qn])
-    while new_question_set in answered_qns: 
-        new_question_set = random.choice(qn_bank[topic][type_qn])
-        
-    question = new_question_set["question"]
+
+    # Choose new qn not answered yet
+    remaining = [q for q in all_qns if q not in answered_qns]
+    if not remaining:
+        return "No questions available for this topic."
+
+    new_question_set = random.choice(remaining)
+
+    answered_qns.append(new_question_set)
+    session["answered_qns"] = answered_qns
     session["question_set"] = new_question_set
-    session["question"] = question 
-    session["topic"] = topic 
+    session["question"] = new_question_set["question"]
     session["correct_answer"] = new_question_set["answer"]
-    session["answered_qns"] = answered_qns 
-    
-    return render_template("definition.html", topic=topic, question=question)
+
+    return render_template("definition.html", topic=topic, question=new_question_set["question"])
 
 @app.route("/answer", methods=["POST", "GET"])
 def answer(): 
