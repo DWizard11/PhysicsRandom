@@ -143,11 +143,14 @@ body{
 
 /* Zigzag divider overlaying the background */
 .zigzag-divider {
-  width: 100%;
-  height: 50px;                /* taller for visible zigzag */
-  position: relative;
-  overflow: visible;
-
+  position: absolute;   /* float on top of background */
+  left: 0;
+  width: 100%;          /* stretch across screen */
+  height: 50px;         /* adjust thickness */
+  overflow: hidden;
+  pointer-events: none; /* so it doesn’t block clicks */
+  z-index: 5;           /* above background, below content */
+  
   /* use same background as body for seamless flow */
   background-image: url("/static/bg_image.jpg");
   background-repeat: no-repeat;
@@ -160,16 +163,15 @@ body{
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;       /* instead of 200% */
+  width: 100%;
   height: 100%;
+
+  /* cartoon zigzag stripe */
   background: repeating-linear-gradient(
     -135deg,
     var(--snoopy-black) 0 25px,
     rgba(255,255,255,0.3) 25px 50px
   );
-  transform: none;   /* remove translate/scale */
-  pointer-events: none;
-  z-index: 10;
 }
 
 /* Snoopy-themed card */
