@@ -50,8 +50,14 @@ def definition():
         topic = request.form.get("topic") 
         if topic == "Ask Me Random": 
             topic = random.choice(topic_list) 
+
+        type_qn = random.choice(["definitions", "equations"])
+        if qn_bank[topic].get("equations", None) in [None, []]: 
+            type_qn = "definitions"
+        if qn_bank[topic].get("definitions", None) in [None, []]: 
+            type_qn = "equations"
             
-        question_set = random.choice(qn_bank[topic]["definitions"])
+        question_set = random.choice(qn_bank[topic][type_qn])
         question = question_set["question"]
         session["question_set"] = question_set
         session["question"] = question 
@@ -67,18 +73,23 @@ def definition():
     answered_qns.append(question_set)
     topic = session.get("topic")
 
-    if len(answered_qns) == len(qn_bank[topic]["definitions"]): 
+    if len(answered_qns) == (len(qn_bank[topic]["definitions"]) + len(qn_bank[topic]["equations"])): 
         answered_qns = []
         
-    new_question_set = random.choice(qn_bank[topic]["definitions"])
+    type_qn = random.choice(["definitions", "equations"])
+    if qn_bank[topic].get("equations", None) in [None, []]: 
+        type_qn = "definitions"
+    if qn_bank[topic].get("definitions", None) in [None, []]: 
+        type_qn = "equations"
+    new_question_set = random.choice(qn_bank[topic][type_qn])
     while new_question_set in answered_qns: 
-        new_question_set = random.choice(qn_bank[topic]["definitions"])
+        new_question_set = random.choice(qn_bank[topic][type_qn])
         
     question = new_question_set["question"]
     session["question_set"] = new_question_set
     session["question"] = question 
     session["topic"] = topic 
-    session["correct_answer"] = question_set["answer"]
+    session["correct_answer"] = new_question_set["answer"]
     session["answered_qns"] = answered_qns 
     
     return render_template("definition.html", topic=topic, question=question)
