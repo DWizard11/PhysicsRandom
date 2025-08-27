@@ -51,6 +51,9 @@ def definition():
         topic = request.form.get("topic") 
         if topic == "Ask Me Random": 
             topic = random.choice(topic_list)
+            random_qn = True 
+        else: 
+            random_qn = False 
 
         # Decide question type
         type_qn = random.choice(["definitions", "equations"])
@@ -66,35 +69,41 @@ def definition():
         session["topic"] = topic 
         session["correct_answer"] = question_set["answer"]
         session["answered_qns"] = [question_set]  # start fresh
+        session["random_qn"] = random_qn 
         return render_template("definition.html", topic=topic, question=question_set["question"])
 
-    # GET: next question
-    topic = random.choice(topic_list)
-    answered_qns = session.get("answered_qns", [])
+    else: 
+        # GET: next question
+        random_qn = session.get("random_qn", False) 
+        if random_qn is True: 
+            topic = random.choice(topic_list)
+        else: 
+            topic = session.get("topic", random.choice(topic_list))
+        answered_qns = session.get("answered_qns", [])
+    
+        all_qns = []
+        for key in ["definitions", "equations"]:
+            all_qns.extend(qn_bank[topic].get(key, []))
+    
+        # If everything answered, reset
+        if len(answered_qns) >= len(all_qns): 
+            answered_qns = []
+    
+        # Choose new qn not answered yet
+        remaining = [q for q in all_qns if q not in answered_qns]
+        if not remaining:
+            return "No questions available for this topic."
+    
+        new_question_set = random.choice(remaining)
+    
+        answered_qns.append(new_question_set)
+        session["answered_qns"] = answered_qns
+        session["question_set"] = new_question_set
+        session["question"] = new_question_set["question"]
+        session["correct_answer"] = new_question_set["answer"]
+        session["topic"] = topic
 
-    all_qns = []
-    for key in ["definitions", "equations"]:
-        all_qns.extend(qn_bank[topic].get(key, []))
-
-    # If everything answered, reset
-    if len(answered_qns) >= len(all_qns): 
-        answered_qns = []
-
-    # Choose new qn not answered yet
-    remaining = [q for q in all_qns if q not in answered_qns]
-    if not remaining:
-        return "No questions available for this topic."
-
-    new_question_set = random.choice(remaining)
-
-    answered_qns.append(new_question_set)
-    session["answered_qns"] = answered_qns
-    session["question_set"] = new_question_set
-    session["question"] = new_question_set["question"]
-    session["correct_answer"] = new_question_set["answer"]
-    session["topic"] = topic
-
-    return render_template("definition.html", topic=topic, question=new_question_set["question"])
+        return render_template("definition.html", topic=topic, question=new_question_set["question"])
 
 @app.route("/answer", methods=["POST", "GET"])
 def answer(): 
