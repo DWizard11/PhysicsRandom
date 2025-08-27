@@ -266,7 +266,7 @@
         "equations": [
             {"question": "Electric Field Equation", "answer": "E = F / q"},
             {"question": "Electric Potential Equation", "answer": "V = W / q"},
-            {"question": "Coulomb’s Law Equation", "answer": "F = k Q1 Q2 / r²"}
+            {"question": "Coulomb’s Law Equation", "answer": "F = k Q1 Q2 / r², where k = 1/4πε0"}
         ]
     }
 }
