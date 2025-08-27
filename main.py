@@ -8,16 +8,7 @@ def parse_data():
     """Reads and parse the definition qn bank """
     with open("h2_definition.json", "r", encoding='utf-8') as file: 
         eqn = json.load(file) 
-    '''
-    with open("idkwhat.txt", "r", encoding='utf-8') as file: 
-        data = []
-        for line in file: 
-            try: 
-                data.append(line.rstrip())
-            except: 
-                continue
-    random.shuffle(data)
-    '''
+        
     return eqn
 
 ### VARIABLE DEFINITIONS ###
@@ -34,26 +25,25 @@ app = Flask(__name__)
 
 app.secret_key = os.environ.get('FLASK_SECRET_KEY') 
 
-@app.route("/", methods=["POST", "GET"]) 
-def home(): 
-    # process definitions 
-    topic = "" 
+@app.route("/", methods=["GET", "POST"])
+def home():
     session["answered_qns"] = []
-    searched = session.get("searched", False) 
-    results = None 
-    query = None 
-    if searched: 
-        try: 
-            results = session.get("result", None) 
-            query = session.get("query", None)
-            print(query) 
-            if query == "": 
-                results = None 
-                query = None 
-        except: 
-            print("No result found") 
-        
-    return render_template("index.html", topic_list=topic_list + ["Ask Me Random"], qn_bank=qn_bank, results=results, query=query)
+
+    # check if there's a search result stored
+    results = session.pop("result", None)
+    query = session.pop("query", None)
+
+    # if you want to know if it came from search at all
+    searched = session.pop("searched", False)
+
+    return render_template(
+        "index.html",
+        topic_list=topic_list + ["Ask Me Random"],
+        qn_bank=qn_bank,
+        results=results,
+        query=query,
+    )
+
 
 @app.route("/definition", methods=["POST", "GET"])
 def definition(): 
@@ -147,7 +137,9 @@ def search():
         definitions = values["definitions"] 
         if definitions != []: 
             for item in definitions: 
-                if query.lower() in item["question"].lower(): 
+                if query.lower() in topic.lower(): 
+                    result.append(item) 
+                elif query.lower() in item["question"].lower(): 
                     result.append(item)
                      
                     
@@ -155,12 +147,14 @@ def search():
         equation = values["equations"] 
         if equation != []: 
             for item in equation: 
-                if query.lower() in item["question"].lower(): 
+                if query.lower() in topic.lower(): 
+                    result.append(item)
+                elif query.lower() in item["question"].lower(): 
                     result.append(item) 
 
     if result == []: 
         print("NOT FOUND")
-        result = None 
+        result = "Not found" 
     else: 
         print(result)
     session["result"] = result

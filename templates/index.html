@@ -45,15 +45,23 @@
                     
                 </main>
                 <br>
-                <div class='search-container'>
+                <div class="search-container">
                     <form method="GET" action="/search">
-                        <label for='query'>Search For Definitions: </label><br>
-                        <input type='search' name='query' placeholder='Enter definition...'> 
-                        <button type='submit'></button> 
+                        <label for="query" class="snoopy-label">🔍 Search Definitions:</label><br>
+                        <input type="search" name="query" placeholder="Enter definition..."> 
+                        <button type="submit">🔍</button> 
                     </form>   
                 </div>
 
-                {% if results is not none %} 
+                {% if results == "Not found" %}
+                <main style="padding:2rem;">
+                    <div class="card snoopy-card">
+                        <h2>Results for {{ query }}</h2>
+                        <h2>No results found.</h2>
+                        <br>
+                    </div>
+                </main>
+                {% elif results is not none %} 
                     <main style="padding:2rem;">
                         <div class="card snoopy-card">
                             <h2>Results for {{ query }}</h2>

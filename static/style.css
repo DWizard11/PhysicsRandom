@@ -436,19 +436,65 @@ main {
     width: 100%;
 }
 
+/* Snoopy Search Box */
+.search-container {
+  background-color: var(--sky-blue-soft);
+  border: 2px solid var(--doghouse-red);
+  border-radius: 2rem;
+  padding: 1rem;
+  max-width: 400px;
+  margin: 1rem auto;
+  box-shadow: 4px 4px 0 var(--ink-black);
+}
+
+.search-container label.snoopy-label {
+  font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+  font-size: 1rem;
+  color: var(--ink-black);
+}
+
+.search-container input[type="search"] {
+  width: 70%;
+  padding: 10px;
+  border: 2px solid var(--ink-black);
+  border-radius: 1rem;
+  outline: none;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.search-container button {
+  background-color: var(--doghouse-red);
+  border: none;
+  border-radius: 50%;
+  color: var(--snoopy-white);
+  font-size: 1.2rem;
+  padding: 10px 14px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink-black);
+  transition: background-color 0.2s ease;
+}
+
+.search-container button:hover {
+  background-color: var(--woodstock-yellow);
+  color: var(--ink-black);
+}
+
+/* Responsive Snoopy Search */
 @media screen and (max-width: 600px) {
-  .topnav .search-container {
-    float: none;
+  .search-container {
+    width: 90%;
+    border-radius: 1rem;
   }
-  .topnav a, .topnav input[type=text], .topnav .search-container button {
-    float: none;
-    display: block;
-    text-align: left;
+
+  .search-container input[type="search"], 
+  .search-container button {
     width: 100%;
-    margin: 0;
-    padding: 14px;
+    display: block;
+    margin: 0.5rem 0;
   }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
+
+  .search-container button {
+    border-radius: 1rem;
   }
 }
