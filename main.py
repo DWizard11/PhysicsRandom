@@ -38,7 +38,7 @@ def home():
 
     return render_template(
         "index.html",
-        topic_list=topic_list + ["Ask Me Random"],
+        topic_list=["Ask Me Random"] + topic_list,
         qn_bank=qn_bank,
         results=results,
         query=query,
@@ -69,7 +69,7 @@ def definition():
         return render_template("definition.html", topic=topic, question=question_set["question"])
 
     # GET: next question
-    topic = session.get("topic")
+    topic = random.choice(topic_list)
     answered_qns = session.get("answered_qns", [])
 
     all_qns = []
@@ -92,6 +92,7 @@ def definition():
     session["question_set"] = new_question_set
     session["question"] = new_question_set["question"]
     session["correct_answer"] = new_question_set["answer"]
+    session["topic"] = topic
 
     return render_template("definition.html", topic=topic, question=new_question_set["question"])
 
@@ -100,9 +101,9 @@ def answer():
     if request.method == "POST": 
         answer = request.form.get("answer")
         try: 
-            question = session.get("question") 
-            topic = session.get("topic")
-            correct_answer = session.get("correct_answer")
+            question = session.get("question", None) 
+            topic = session.get("topic", None)
+            correct_answer = session.get("correct_answer", None)
         except: 
             question = None
             topic = None 
