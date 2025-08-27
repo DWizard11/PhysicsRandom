@@ -81,7 +81,7 @@
             {"question": "State the equation for Centripetal Force", "answer": "F = mv² / r"}
         ]
     },
-    "Gravitation": {
+    "Gravitational Field": {
         "definitions": [
             {"question": "Define Field of Force", "answer": "A region of space surrounding a body within which it can exert a force on another similar body not in contact with it."},
             {"question": "Define Gravitational Field", "answer": "A region of space where a mass experiences a force. The direction of the field is the direction of the force on the mass."},
@@ -96,6 +96,28 @@
             {"question": "State the equation for Gravitational Force", "answer": "F = Gm₁m₂ / r²"},
             {"question": "State the equation for Gravitational Field Strength", "answer": "g = F / m = GM / r²"},
             {"question": "State the equation for Gravitational Potential", "answer": "φ = -GM / r"}
+        ]
+    },
+    "Ideal Gas Law": {
+        "definitions": [
+            {"question": "Define Ideal Gas", "answer": "An ideal gas is one which obeys the equation of state pV = nRT at all pressures, volumes and temperatures."},
+            {"question": "State the Assumptions of the Kinetic Theory of Gases", "answer": "1. Gas consists of a large number of identical molecules, 2. Molecules are in rapid random motion, 3. No inter-molecular forces except during collisions, 4. Volume of molecules is negligible, 5. Collisions are elastic, 6. Collision time is negligible compared to interval between collisions."},
+            {"question": "Define Avogadro Constant", "answer": "The number of atoms in 0.012 kg of carbon-12."},
+            {"question": "Define One Mole", "answer": "One mole of any substance is the amount containing 6.02 × 10^23 particles."}
+        ],
+        "equations": [
+            {"question": "State the Ideal Gas Equation", "answer": "pV = nRT"}
+        ]
+    },
+    "First Law of Thermodynamic": {
+        "definitions": [
+            {"question": "Define Specific Heat Capacity", "answer": "The thermal energy required per unit mass per unit change in temperature of the substance."},
+            {"question": "Define Specific Latent Heat", "answer": "The thermal energy per unit mass required to change the state of a substance without any change of temperature."},
+            {"question": "Define Internal Energy", "answer": "The sum of a random distribution of kinetic and potential energies associated with the molecules of a system."},
+            {"question": "State the First Law of Thermodynamics", "answer": "The increase in internal energy of a system is equal to the sum of heat supplied to the system and the work done on the system."}
+        ],
+        "equations": [
+            {"question": "State the First Law of Thermodynamics Equation", "answer": "ΔU = q + W"}
         ]
     },
     "Wave Motion": {
@@ -145,26 +167,19 @@
         ],
         "equations": []
     },
-    "Ideal Gas Law": {
+    "Electric Field": {
         "definitions": [
-            {"question": "Define Ideal Gas", "answer": "An ideal gas is one which obeys the equation of state pV = nRT at all pressures, volumes and temperatures."},
-            {"question": "State the Assumptions of the Kinetic Theory of Gases", "answer": "1. Gas consists of a large number of identical molecules, 2. Molecules are in rapid random motion, 3. No inter-molecular forces except during collisions, 4. Volume of molecules is negligible, 5. Collisions are elastic, 6. Collision time is negligible compared to interval between collisions."},
-            {"question": "Define Avogadro Constant", "answer": "The number of atoms in 0.012 kg of carbon-12."},
-            {"question": "Define One Mole", "answer": "One mole of any substance is the amount containing 6.02 × 10^23 particles."}
+            {"question": "Define Electric Field Strength", "answer": "The electric force exerted per unit positive charge acting on a small stationary charge placed at that point. It is numerically equal to the potential gradient at that point."},
+            {"question": "Define Electric Field", "answer": "A region of space where a stationary charge experiences a force."},
+            {"question": "Define Direction of Electric Field", "answer": "The direction of the force on a positive charge."},
+            {"question": "Define Electric Field Lines", "answer": "Lines that show the direction of the force acting on a stationary positive point charge in the field."},
+            {"question": "Define Electric Potential at a Point", "answer": "The work done per unit positive charge in moving a small test charge from infinity to that point."},
+            {"question": "State Coulomb’s Law", "answer": "The force between two point charges Q1 and Q2 is proportional to the product of the charges and inversely proportional to the square of their separation."}
         ],
         "equations": [
-            {"question": "State the Ideal Gas Equation", "answer": "pV = nRT"}
-        ]
-    },
-    "First Law of Thermodynamic": {
-        "definitions": [
-            {"question": "Define Specific Heat Capacity", "answer": "The thermal energy required per unit mass per unit change in temperature of the substance."},
-            {"question": "Define Specific Latent Heat", "answer": "The thermal energy per unit mass required to change the state of a substance without any change of temperature."},
-            {"question": "Define Internal Energy", "answer": "The sum of a random distribution of kinetic and potential energies associated with the molecules of a system."},
-            {"question": "State the First Law of Thermodynamics", "answer": "The increase in internal energy of a system is equal to the sum of heat supplied to the system and the work done on the system."}
-        ],
-        "equations": [
-            {"question": "State the First Law of Thermodynamics Equation", "answer": "ΔU = q + W"}
+            {"question": "Electric Field Equation", "answer": "E = F / q"},
+            {"question": "Electric Potential Equation", "answer": "V = W / q"},
+            {"question": "Coulomb’s Law Equation", "answer": "F = k Q1 Q2 / r², where k = 1/4πε0"}
         ]
     },
     "Current Of Electricity": {
@@ -253,20 +268,5 @@
             {"question": "Define Nuclide", "answer": "A particular species (type) of nucleus that is specified by its proton number and neutron number."}
         ],
         "equations": []
-    },
-    "Electric Field": {
-        "definitions": [
-            {"question": "Define Electric Field Strength", "answer": "The electric force exerted per unit positive charge acting on a small stationary charge placed at that point. It is numerically equal to the potential gradient at that point."},
-            {"question": "Define Electric Field", "answer": "A region of space where a stationary charge experiences a force."},
-            {"question": "Define Direction of Electric Field", "answer": "The direction of the force on a positive charge."},
-            {"question": "Define Electric Field Lines", "answer": "Lines that show the direction of the force acting on a stationary positive point charge in the field."},
-            {"question": "Define Electric Potential at a Point", "answer": "The work done per unit positive charge in moving a small test charge from infinity to that point."},
-            {"question": "State Coulomb’s Law", "answer": "The force between two point charges Q1 and Q2 is proportional to the product of the charges and inversely proportional to the square of their separation."}
-        ],
-        "equations": [
-            {"question": "Electric Field Equation", "answer": "E = F / q"},
-            {"question": "Electric Potential Equation", "answer": "V = W / q"},
-            {"question": "Coulomb’s Law Equation", "answer": "F = k Q1 Q2 / r², where k = 1/4πε0"}
-        ]
     }
 }
