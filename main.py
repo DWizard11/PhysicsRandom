@@ -39,10 +39,21 @@ def home():
     # process definitions 
     topic = "" 
     session["answered_qns"] = []
-    firstTime = True 
-    if topic == "": 
-        firstTime = True 
-    return render_template("index.html", firstTime=firstTime, topic_list=topic_list + ["Ask Me Random"], qn_bank=qn_bank)
+    searched = session.get("searched", False) 
+    results = None 
+    query = None 
+    if searched: 
+        try: 
+            results = session.get("result", None) 
+            query = session.get("query", None)
+            print(query) 
+            if query == "": 
+                results = None 
+                query = None 
+        except: 
+            print("No result found") 
+        
+    return render_template("index.html", topic_list=topic_list + ["Ask Me Random"], qn_bank=qn_bank, results=results, query=query)
 
 @app.route("/definition", methods=["POST", "GET"])
 def definition(): 
@@ -122,7 +133,42 @@ def answer():
         
         return render_template("answer.html", question=question, topic=topic, correct_answer=correct_answer, answer=answer)
 
+@app.route("/search")
+def search(): 
+    query = request.args.get("query") 
+    if query == "": 
+        session["result"] = None
+        session["query"] = None
+        return redirect("/")
+    result = []
+    # query definition
+    for topic, values in qn_bank.items(): 
+        # go thru the definitions and equations 
+        definitions = values["definitions"] 
+        if definitions != []: 
+            for item in definitions: 
+                if query.lower() in item["question"].lower(): 
+                    result.append(item)
+                     
+                    
+        # check equation 
+        equation = values["equations"] 
+        if equation != []: 
+            for item in equation: 
+                if query.lower() in item["question"].lower(): 
+                    result.append(item) 
 
+    if result == []: 
+        print("NOT FOUND")
+        result = None 
+    else: 
+        print(result)
+    session["result"] = result
+    session["query"] = query
+    session["searched"] = True
+    return redirect("/")
+        
+    
 
     
 if __name__ == "__main__": 

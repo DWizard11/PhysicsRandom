@@ -42,9 +42,43 @@
                         </form>
     
                     </div>
-    
                     
                 </main>
+                <br>
+                <div class='search-container'>
+                    <form method="GET" action="/search">
+                        <label for='query'>Search For Definitions: </label><br>
+                        <input type='search' name='query' placeholder='Enter definition...'> 
+                        <button type='submit'></button> 
+                    </form>   
+                </div>
+
+                {% if results is not none %} 
+                    <main style="padding:2rem;">
+                        <div class="card snoopy-card">
+                            <h2>Results for {{ query }}</h2>
+                            <table class="snoopy-table">
+                                <thead>
+                                    <tr>
+                                        <th>Defintions</th>
+                                        <th>Answers</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for item in results %}
+                                        <tr>
+                                            <td>{{ item["question"] }}</td>
+                                            <td>{{ item["answer"] }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                            <br>
+                        </div>
+                    </main>
+                {% else %} 
                 <main style="padding:2rem;">
                     <div class="card snoopy-card">
                         {% for key, value in qn_bank.items() %}
@@ -73,6 +107,7 @@
                         {% endfor %} 
                     </div>
                 </main>
+                {% endif %} 
             </div>
             
             
