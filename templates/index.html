@@ -2,14 +2,14 @@
 <html>
         <head>
             <meta charset='utf-8'>
-            <title>Physics Test</title>
+            <title>Criminal Law Test</title>
             <link rel="stylesheet" href="/static/style.css">
             <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
         </head>
 
         <body>
             <header class="bg-doghouse-header" style="padding:2rem;">
-                <h1 style="color:var(--snoopy-white); margin:0;text-align:center;">Physics Quiz</h1>
+                <h1 style="color:var(--snoopy-white); margin:0;text-align:center;">Criminal Law Quiz</h1>
             </header>
 
             <div class="divider-container">
@@ -36,6 +36,7 @@
                             {% for item in topic_list %}
                               <option value="{{ item }}">{{ item }}</option>
                             {% endfor %}
+                              <option value="Ask Me Random">Ask Me Random</option>
                           </select>
                           <button type="submit" class="btn">Quiz Me!</button>
     
@@ -47,12 +48,32 @@
                 <br>
                 <div class="search-container">
                     <form method="GET" action="/search">
-                        <label for="query" class="snoopy-label">🔍 Search Definitions:</label><br>
-                        <input type="search" name="query" placeholder="Enter definition..."> 
+                        <label for="query" class="snoopy-label">🔍 Search:</label><br>
+                        <input type="search" name="query" placeholder="Enter query..."> 
                         <button type="submit">🔍</button> 
                     </form>   
                 </div>
 
+                <!--
+                <div>
+                    <form method="GET" action="/">
+                        <!-- Dropdown 
+                        <label for="category">Filter by Topics:</label>
+                        <select name="category" id="category">
+                            {% for item in topic_list %} 
+                            <option value="{{ item }}">{{ item }}</option>
+                            {% endfor %}
+                        </select>
+    
+                        <!-- Checkboxes 
+                        {% for item in topic_list %}
+                        <label><input type="checkbox" value="{{ item }}">{{ item }}</label>
+                        {% endfor %} 
+                        <button type="submit">Filter</button>
+                    </form>
+                </div>
+                -->
+                
                 {% if results == "Not found" %}
                 <main style="padding:2rem;">
                     <div class="card snoopy-card">
@@ -68,7 +89,7 @@
                             <table class="snoopy-table">
                                 <thead>
                                     <tr>
-                                        <th>Defintions</th>
+                                        <th>Question</th>
                                         <th>Answers</th>
                                     </tr>
                                 </thead>
@@ -77,7 +98,15 @@
                                     {% for item in results %}
                                         <tr>
                                             <td>{{ item["question"] }}</td>
-                                            <td>{{ item["answer"] }}</td>
+                                            
+                                            <td>
+                                                <ol class="answer-list">
+                                                    {% for step in item["answer"] %}
+                                                        <li>{{ step }}</li>
+                                                    {% endfor %}
+                                                </ol>
+                                            </td>
+                                    
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -104,7 +133,13 @@
                                     {% for item in a %} 
                                     <tr>
                                         <td>{{ item["question"] }}</td>
-                                        <td>{{ item["answer"] }}</td>
+                                        <td>
+                                            <ol class="answer-list">
+                                                {% for step in item["answer"] %}
+                                                    <li>{{ step }}</li>
+                                                {% endfor %}
+                                            </ol>
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 {% endfor %}

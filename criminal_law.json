@@ -1,0 +1,105 @@
+{
+    "Drunk & Incapable": {
+        "processes": [
+            {
+                "question": "What is the step-by-step process for managing a 'Drunk' incident?",
+                "answer": [
+                    "Initial Assessment & Preparation: Receive incident details (location, subject description, behaviour), gather more information from caller/POCC, prepare necessary equipment, consider need for backup or ambulance.",
+                    "Approach & Scene Safety: Approach with caution, use tactical positioning, observe hazards (e.g., broken bottles, aggressive behaviour), ensure bystanders are at a safe distance.",
+                    "Engagement & Communication: Engage calmly and professionally, use clear non-confrontational language, apply de-escalation techniques, use proper voice procedures and non-verbal cues.",
+                    "Assessment & Decision-Making: Assess behaviour and intoxication level, identify offences, decide actions based on protecting lives/property, preventing/detecting crime, preserving public order.",
+                    "Action & Control: Search if necessary, restrain/arrest if required, seize evidence, provide care if injured, maintain control and document actions.",
+                    "Coordination & Reporting: Communicate with team/agencies, brief supervisors, use SALUTE format to update POCC and log actions.",
+                    "Closure & Handover: Account for evidence/equipment, handover subject appropriately, provide advice/support, complete documentation."
+                ]
+            },
+            {
+                "question": "What is the checklist for managing a 'Drunk' incident?",
+                "answer": [
+                    "Before Arrival: Review details, gather info from POCC, prepare equipment, consider backup/ambulance.",
+                    "Upon Arrival (10-2): Conduct AOS, use tactical positioning, observe hazards, control bystanders.",
+                    "Engagement & Communication: Engage calmly, use clear language, apply de-escalation, use voice procedures, gather information.",
+                    "Assessment & Decision-Making: Assess intoxication and behaviour, identify offences, decide actions based on guiding principles.",
+                    "Action & Control (10-7): Search if necessary, restrain/arrest if needed, seize evidence, provide care, document actions.",
+                    "Coordination & Reporting: Communicate with team/agencies, brief supervisors, use SALUTE format.",
+                    "Closure & Handover (10-3): Account for items, handover subject, provide advice, complete reports."
+                ]
+            }
+        ]
+    },
+
+    "Unsound Mind": {
+        "processes": [
+            {
+                "question": "What is the step-by-step process for handling an incident involving a person of unsound mind?",
+                "answer": [
+                    "Initial Approach and Safety: Assess safety, maintain distance, observe behaviour, prepare for backup.",
+                    "Communication and Engagement: Introduce yourself calmly, use simple language, avoid escalation, observe distress.",
+                    "Assessment of Mental State: Ask orientation questions, observe behavioural signs, assess self-care ability, identify risks.",
+                    "Gathering Information: Obtain info from bystanders/family, communicate with agencies, document observations.",
+                    "Decision-Making and Action: Decide on intervention, monitor or restrain if necessary, follow legal procedures, arrange medical help.",
+                    "Search and Evidence Handling: Conduct search if necessary, explain reason, ensure witness presence, document findings.",
+                    "Documentation and Reporting: Record all actions, note involved parties, complete reports.",
+                    "Follow-Up and Handover: Arrange handover, provide full information, debrief, check for further follow-up."
+                ]
+            }
+        ]
+    },
+
+    "Shop Theft": {
+        "processes": [
+            {
+                "question": "What is the step-by-step process for attending a shop theft incident?",
+                "answer": [
+                    "Initial Approach and Scene Management: Arrive, assess safety, call backup if needed, preserve scene, manage crowd.",
+                    "Engage and Communicate: Interview complainant and witnesses, gather details, engage suspect and verify identity.",
+                    "Evidence Handling: Secure evidence, photograph items, check CCTV/PolCam footage.",
+                    "Assessment and CAF Application: Assess arrest criteria (value, age, antecedents), consider vulnerable persons.",
+                    "Incident Management Model: Follow guiding principles, use 10-2, 10-7, 10-3 codes, report using SALUTE.",
+                    "Reporting and Documentation: Record all actions and rationale, complete FIR/diary, issue case cards/service replies.",
+                    "Suspect Management: Detain or release appropriately, issue CP28 if needed, ensure proper handover.",
+                    "Debrief and Follow-Up: Brief team leader/IO, provide prevention advice, update logsheets."
+                ]
+            },
+            {
+                "question": "What are the key step-by-step actions for attending a shop theft incident?",
+                "answer": [
+                    "Initial Communication & Arrival: Introduce yourself, gather preliminary information, check threats, ensure safety.",
+                    "Scene Management: Preserve scene, protect life/property, deter crime.",
+                    "Evidence Gathering: Interview witnesses, collect evidence, review CCTV.",
+                    "Suspect Handling: Confirm identity, search if needed, secure stolen property, arrest if required.",
+                    "Documentation: Record actions, complete reports, maintain chain of custody.",
+                    "Communication with Stakeholders: Update victims, coordinate with agencies.",
+                    "Follow-Up Actions: Advise on prevention, monitor patterns."
+                ]
+            }
+        ]
+    },
+
+    "Dispute & VCH": {
+        "processes": [
+            {
+                "question": "What is the step-by-step process for handling a dispute and VCH incident?",
+                "answer": [
+                    "Initial Approach and Scene Assessment: Maintain professionalism, assess safety, gather initial information.",
+                    "Engagement and Communication: Introduce yourself, obtain consent, listen actively, clarify information.",
+                    "Fact-Finding and Investigation: Separate parties, interview witnesses, record statements, assess injuries.",
+                    "Protect Lives and Property: Prevent harm, preserve evidence, document findings.",
+                    "Legal and Procedural Actions: Inform rights, issue forms (NP306, NP301), decide on arrest or mediation.",
+                    "De-escalation and Resolution: Mediate if possible, advise next steps, refer to support services.",
+                    "Reporting and Follow-Up: Complete reports, update superiors, follow up if necessary."
+                ]
+            },
+            {
+                "question": "What are the structured steps for managing a dispute incident?",
+                "answer": [
+                    "Initial Approach & Scene Management: Observe scene, introduce yourself, assess threats, separate parties, call backup if needed.",
+                    "Fact-Finding & Information Gathering: Obtain accounts, ask open-ended questions, record particulars, interview witnesses, assess injuries.",
+                    "Applying the Law & Assessment: Identify offence, determine arrestable/non-arrestable, apply procedures (NP299, NP323, NP301, NP306).",
+                    "Communication & Documentation: Update POCC, use radio procedures, record actions, summarize key facts.",
+                    "Resolution & Follow-Up: Mediate if possible, proceed with arrest if needed, provide advice, restore order, check equipment."
+                ]
+            }
+        ]
+    }
+}

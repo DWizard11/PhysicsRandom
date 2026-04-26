@@ -4,9 +4,12 @@ import random
 import os 
 
 ### FUNCTION DEFINITIONS ###
+global FILE_NAME
+FILE_NAME = "criminal_law.json"
+
 def parse_data(): 
     """Reads and parse the definition qn bank """
-    with open("h2_definition.json", "r", encoding='utf-8') as file: 
+    with open(FILE_NAME, "r", encoding='utf-8') as file: 
         eqn = json.load(file) 
         
     return eqn
@@ -17,6 +20,8 @@ qn_bank = parse_data()
 topic_list = []
 for topic, value in qn_bank.items(): 
     topic_list.append(topic)
+
+
 
 answered_qns = []
 
@@ -38,7 +43,7 @@ def home():
 
     return render_template(
         "index.html",
-        topic_list=["Ask Me Random"] + topic_list,
+        topic_list=topic_list,
         qn_bank=qn_bank,
         results=results,
         query=query,
@@ -55,13 +60,19 @@ def definition():
         else: 
             random_qn = False 
 
+
+        ### Temporary change for SBA ###
+        type_qn = "processes"
+        
+        '''
         # Decide question type
         type_qn = random.choice(["definitions", "equations"])
         if not qn_bank[topic].get("equations"): 
             type_qn = "definitions"
         if not qn_bank[topic].get("definitions"): 
             type_qn = "equations"
-
+        '''
+        
         # Pick first question
         question_set = random.choice(qn_bank[topic][type_qn])
         session["question_set"] = question_set
