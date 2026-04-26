@@ -93,12 +93,13 @@ def definition():
         answered_qns = session.get("answered_qns", [])
     
         all_qns = []
-        for key in ["definitions", "equations"]:
+        for key in qn_bank[topic].keys():
             all_qns.extend(qn_bank[topic].get(key, []))
     
         # If everything answered, reset
         if len(answered_qns) >= len(all_qns): 
             answered_qns = []
+            session["answered_qns"] = []
     
         # Choose new qn not answered yet
         remaining = [q for q in all_qns if q not in answered_qns]
@@ -155,7 +156,7 @@ def search():
     # query definition
     for topic, values in qn_bank.items(): 
         # go thru the definitions and equations 
-        definitions = values["definitions"] 
+        definitions = values["processes"] 
         if definitions != []: 
             for item in definitions: 
                 if query.lower() in topic.lower(): 
@@ -163,7 +164,8 @@ def search():
                 elif query.lower() in item["question"].lower(): 
                     result.append(item)
                      
-                    
+
+        '''
         # check equation 
         equation = values["equations"] 
         if equation != []: 
@@ -172,7 +174,7 @@ def search():
                     result.append(item)
                 elif query.lower() in item["question"].lower(): 
                     result.append(item) 
-
+        '''
     if result == []: 
         print("NOT FOUND")
         result = "Not found" 
