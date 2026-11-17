@@ -26,6 +26,3 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "gunicorn --bind 0.0.0.0:5000 main:app"
-
-[agent]
-expertMode = true

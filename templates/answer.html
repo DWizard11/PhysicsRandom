@@ -29,14 +29,7 @@
 
                 </div>
                 <div class="card">
-                    <div class="answer-p">
-                        This is the answer: 
-                        <ol>
-                            {% for step in correct_answer %}
-                                <li>{{ step }}</li>
-                            {% endfor %}
-                        </ol>
-                    </div>
+                    <p class="answer-p">This is the answer: {{ correct_answer }}</p>
                     <p class="answer-p">Your Answer: {{ answer }}</p>
                 </div>
 
